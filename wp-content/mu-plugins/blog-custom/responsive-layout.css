@@ -1,0 +1,15 @@
+/* Responsive Layout */
+@media (orientation: landscape) {
+  .sidebar-nav { position: fixed; left: 0; top: 0; width: 80px; height: 100%; flex-direction: column; }
+  .sidebar-menu { flex-direction: column; }
+  .sidebar-text { font-size: 8px; writing-mode: horizontal-tb; }
+  .main-content { margin-left: 80px; }
+}
+@media (orientation: portrait) {
+  .sidebar-nav { position: fixed; left: 0; top: 0; width: 100%; height: 50px; }
+  .sidebar-text { display: none; }
+  .main-content { margin-top: 50px; }
+}
+.hero-title { display: flex; gap: 15px; font-family: Orbitron; font-weight: 900; letter-spacing: 8px; }
+.hero-title-line { color: black; }
+.hero-title-line.accent { color: var(--color-accent); }

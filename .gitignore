@@ -1,0 +1,43 @@
+# WordPress 核心文件（可从官方下载，无需版本控制）
+# wp-admin/
+# wp-includes/
+
+# 配置文件（包含数据库密码，不应提交）
+wp-config.php
+
+# 调试日志
+wp-content/debug.log
+
+# 缓存
+wp-content/cache/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+
+# 上传文件
+wp-content/uploads/
+
+# 插件（如有需要可取消注释）
+# wp-content/plugins/
+
+# 主题（如有需要可取消注释）
+# wp-content/themes/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE 配置
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node.js
+node_modules/
+
+# Composer
+vendor/
+composer.lock
