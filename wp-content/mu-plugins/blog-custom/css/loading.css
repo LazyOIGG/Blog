@@ -1,0 +1,112 @@
+/* ==================== 加载界面 ==================== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-black);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 左侧进度条容器 */
+.progress-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 100%;
+    z-index: 100001;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    position: relative;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: var(--color-accent);
+    transition: height 50ms linear;
+    box-shadow: 0 0 15px var(--color-accent), 0 0 30px rgba(255, 250, 0, 0.5);
+}
+
+.progress-dot {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px var(--color-accent), 0 0 20px var(--color-accent);
+    transform: translateY(100%);
+}
+
+.progress-text {
+    position: fixed;
+    left: 20px;
+    top: 0%;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    transition: top 50ms linear;
+    z-index: 100000;
+    text-shadow: 0 0 10px var(--color-accent);
+    padding: 4px 8px;
+    background: rgba(10, 10, 10, 0.8);
+    border-left: 2px solid var(--color-accent);
+}
+
+.progress-label {
+    position: fixed;
+    left: 20px;
+    bottom: 40px;
+    font-family: var(--font-display);
+    font-size: 10px;
+    color: var(--color-gray-light);
+    letter-spacing: 4px;
+    z-index: 100000;
+}
+
+/* HUD 元素 */
+.hud-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.wipe-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--color-accent);
+    z-index: 10000;
+    display: none;
+}
+
+/* ==================== 主页面内容 ==================== */
+.main-content {
+    opacity: 0;
+    visibility: hidden;
+    min-height: 100vh;
+}
+
+.main-content.visible {
+    opacity: 1;
+    visibility: visible;
+}

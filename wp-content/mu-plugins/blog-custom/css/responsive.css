@@ -1,0 +1,201 @@
+/* ==================== 响应式设计 ==================== */
+
+/* 宽度断点 */
+@media (max-width: 1200px) {
+    .article-container {
+        grid-template-columns: 250px 1fr;
+        gap: 60px;
+    }
+
+    .hero-section {
+        padding: 100px 60px 60px;
+    }
+
+    .article-section {
+        padding: 60px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .sidebar-nav {
+        height: 50px;
+        padding: 0 10px;
+    }
+
+    .sidebar-menu {
+        gap: 10px;
+    }
+
+    .sidebar-text {
+        font-size: 8px;
+    }
+
+    .hero-section {
+        padding: 80px 40px 60px;
+    }
+
+    .article-section {
+        padding: 60px 40px;
+    }
+
+    .article-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-decoration {
+        display: none;
+    }
+
+    .footer-section {
+        padding: 60px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-nav {
+        height: 45px;
+        padding: 0 8px;
+    }
+
+    .sidebar-logo {
+        width: 30px;
+        height: 30px;
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .sidebar-menu {
+        gap: 8px;
+    }
+
+    .sidebar-text {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 0;
+        margin-left: auto;
+    }
+
+    .hero-section {
+        margin-top: 45px;
+        padding: 60px 20px;
+        min-height: 50vh;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .article-section {
+        padding: 40px 20px;
+    }
+
+    .article-image-wrapper {
+        height: 300px;
+    }
+
+    .image-decoration {
+        width: 40px;
+    }
+
+    .footer-section {
+        padding: 40px 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* ==================== 方向响应 ==================== */
+
+/* 横屏设备 - 导航栏在左侧 */
+@media (orientation: landscape) {
+    .sidebar-nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 80px;
+        height: 100%;
+        flex-direction: column;
+        padding: 20px 0;
+        transform: translateX(0);
+    }
+
+    .sidebar-logo {
+        margin: 0 auto 40px;
+    }
+
+    .sidebar-menu {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sidebar-item {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .sidebar-text {
+        font-size: 8px;
+        writing-mode: horizontal-tb;
+    }
+
+    .main-content {
+        margin-left: 80px;
+    }
+
+    .hero-section {
+        padding: 80px 60px;
+    }
+
+    .article-container {
+        grid-template-columns: 250px 1fr;
+    }
+}
+
+/* 竖屏设备 - 导航栏在顶部 */
+@media (orientation: portrait) {
+    .sidebar-nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 50px;
+        flex-direction: row;
+        padding: 0 15px;
+        transform: translateY(0);
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .sidebar-item {
+        flex-direction: row;
+        gap: 6px;
+    }
+
+    .sidebar-text {
+        display: none;
+    }
+
+    .main-content {
+        margin-top: 50px;
+    }
+
+    .hero-section {
+        padding: 60px 20px;
+    }
+
+    .article-container {
+        grid-template-columns: 1fr;
+    }
+}
+

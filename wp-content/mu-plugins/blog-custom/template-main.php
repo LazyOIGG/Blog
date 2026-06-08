@@ -1,7 +1,7 @@
 <?php
 /**
- * Template Name: Industrial Sci-Fi Blog
- * Description: 极简工业文艺风个人博客
+ * Template Name: Blog
+ * Description: 个人博客主页
  */
 ?>
 <!DOCTYPE html>
@@ -10,12 +10,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo get_bloginfo("name"); ?> - Industrial Blog</title>
-    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom"); ?>/style.css">
+    <!-- CSS 模块 -->
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/variables.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/loading.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/hero.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/article.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/footer.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/animations.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body, html { margin: 0 !important; padding: 0 !important; }
     </style>
-    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom"); ?>/sidebar.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/sidebar.css">
 </head>
 <body>
     <!-- 左侧进度条 - 紧贴浏览器左边缘 -->
@@ -447,7 +454,7 @@
         </footer>
     </div>
 
-    <script src="<?php echo content_url("/mu-plugins/blog-custom"); ?>/main.js"></script>
-    <script src="<?php echo content_url("/mu-plugins/blog-custom"); ?>/sidebar.js"></script>
+    <script src="<?php echo content_url("/mu-plugins/blog-custom/js"); ?>/main.js"></script>
+    <script src="<?php echo content_url("/mu-plugins/blog-custom/js"); ?>/sidebar.js"></script>
 </body>
 </html>

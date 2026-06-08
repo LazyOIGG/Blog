@@ -44,34 +44,39 @@ add_action('widgets_init', 'blog_custom_widgets_init');
  * 加载样式和脚本
  */
 function blog_custom_enqueue_assets() {
-    // 主样式
-    wp_enqueue_style(
-        'blog-custom-style',
-        BLOG_CUSTOM_URL . '/style.css',
-        array(),
-        BLOG_CUSTOM_VERSION
+    // CSS 模块（按依赖顺序加载）
+    $css_modules = array(
+        'variables'  => 'css/variables.css',
+        'loading'    => 'css/loading.css',
+        'hero'       => 'css/hero.css',
+        'article'    => 'css/article.css',
+        'footer'     => 'css/footer.css',
+        'animations' => 'css/animations.css',
+        'sidebar'    => 'css/sidebar.css',
+        'responsive' => 'css/responsive.css',
     );
 
-    // 响应式样式
-    wp_enqueue_style(
-        'blog-custom-responsive',
-        BLOG_CUSTOM_URL . '/responsive.css',
-        array(),
-        BLOG_CUSTOM_VERSION
-    );
+    foreach ($css_modules as $handle => $file) {
+        wp_enqueue_style(
+            'blog-custom-' . $handle,
+            BLOG_CUSTOM_URL . '/' . $file,
+            array(),
+            BLOG_CUSTOM_VERSION
+        );
+    }
 
-    // 响应式布局
-    wp_enqueue_style(
-        'blog-custom-layout',
-        BLOG_CUSTOM_URL . '/layout.css',
-        array(),
-        BLOG_CUSTOM_VERSION
-    );
-
-    // 主脚本
+    // 脚本文件
     wp_enqueue_script(
         'blog-custom-main',
-        BLOG_CUSTOM_URL . '/main.js',
+        BLOG_CUSTOM_URL . '/js/main.js',
+        array(),
+        BLOG_CUSTOM_VERSION,
+        true
+    );
+
+    wp_enqueue_script(
+        'blog-custom-sidebar',
+        BLOG_CUSTOM_URL . '/js/sidebar.js',
         array(),
         BLOG_CUSTOM_VERSION,
         true
@@ -158,6 +163,6 @@ add_filter('template_include', 'blog_custom_template_include', 99);
  * 注册编辑器样式
  */
 function blog_custom_admin_style() {
-    add_editor_style(BLOG_CUSTOM_URL . '/style.css');
+    add_editor_style(BLOG_CUSTOM_URL . '/css/variables.css');
 }
 add_action('admin_init', 'blog_custom_admin_style');

@@ -1,0 +1,28 @@
+/* ==================== 底部区域 ==================== */
+.footer-section {
+    margin-top: 60px;
+    padding: 80px;
+    background: var(--color-black);
+    color: var(--color-white);
+}
+
+.footer-content {
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: var(--color-accent);
+}
+
+.footer-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--color-gray-light);
+}
