@@ -10,12 +10,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo get_bloginfo("name"); ?> - Industrial Blog</title>
-    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom"); ?>/main-blog.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom"); ?>/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body, html { margin: 0 !important; padding: 0 !important; }
     </style>
-    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom"); ?>/arknights-sidebar.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom"); ?>/sidebar.css">
 </head>
 <body>
     <!-- 左侧进度条 - 紧贴浏览器左边缘 -->
@@ -447,7 +447,7 @@
         </footer>
     </div>
 
-    <script src="<?php echo content_url("/mu-plugins/blog-custom"); ?>/main-blog.js"></script>
-    <script src="<?php echo content_url("/mu-plugins/blog-custom"); ?>/arknights-sidebar.js"></script>
+    <script src="<?php echo content_url("/mu-plugins/blog-custom"); ?>/main.js"></script>
+    <script src="<?php echo content_url("/mu-plugins/blog-custom"); ?>/sidebar.js"></script>
 </body>
 </html>

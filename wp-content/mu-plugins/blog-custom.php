@@ -46,33 +46,32 @@ add_action('widgets_init', 'blog_custom_widgets_init');
 function blog_custom_enqueue_assets() {
     // 主样式
     wp_enqueue_style(
-        'blog-custom-main-style',
-        BLOG_CUSTOM_URL . '/main-blog.css',
+        'blog-custom-style',
+        BLOG_CUSTOM_URL . '/style.css',
         array(),
         BLOG_CUSTOM_VERSION
     );
-    
 
     // 响应式样式
     wp_enqueue_style(
-        'blog-custom-responsive-style',
-        BLOG_CUSTOM_URL . '/custom-responsive.css',
+        'blog-custom-responsive',
+        BLOG_CUSTOM_URL . '/responsive.css',
         array(),
         BLOG_CUSTOM_VERSION
     );
-    
+
     // 响应式布局
     wp_enqueue_style(
-        'blog-custom-responsive-layout',
-        BLOG_CUSTOM_URL . '/responsive-layout.css',
+        'blog-custom-layout',
+        BLOG_CUSTOM_URL . '/layout.css',
         array(),
         BLOG_CUSTOM_VERSION
     );
-    
+
     // 主脚本
     wp_enqueue_script(
-        'blog-custom-main-script',
-        BLOG_CUSTOM_URL . '/main-blog.js',
+        'blog-custom-main',
+        BLOG_CUSTOM_URL . '/main.js',
         array(),
         BLOG_CUSTOM_VERSION,
         true
@@ -145,8 +144,8 @@ add_action('init', 'blog_custom_cleanup_head');
  * 覆盖页面模板 - 为特定页面使用自定义模板
  */
 function blog_custom_template_include($template) {
-    if (is_page('main-blog') || is_page_template('page-main-blog.php')) {
-        $custom_template = BLOG_CUSTOM_DIR . '/page-main-blog.php';
+    if (is_page('main-blog') || is_page_template('template-main.php')) {
+        $custom_template = BLOG_CUSTOM_DIR . '/template-main.php';
         if (file_exists($custom_template)) {
             return $custom_template;
         }
@@ -159,6 +158,6 @@ add_filter('template_include', 'blog_custom_template_include', 99);
  * 注册编辑器样式
  */
 function blog_custom_admin_style() {
-    add_editor_style(BLOG_CUSTOM_URL . '/main-blog.css');
+    add_editor_style(BLOG_CUSTOM_URL . '/style.css');
 }
 add_action('admin_init', 'blog_custom_admin_style');
