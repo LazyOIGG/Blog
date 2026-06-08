@@ -144,7 +144,7 @@ add_action('init', 'blog_custom_cleanup_head');
  * 覆盖页面模板 - 为特定页面使用自定义模板
  */
 function blog_custom_template_include($template) {
-    if (is_page('main-blog') || is_page_template('template-main.php')) {
+    if (is_page('main-blog') || is_page_template('template-main.php') || is_page_template('page-main-blog.php')) {
         $custom_template = BLOG_CUSTOM_DIR . '/template-main.php';
         if (file_exists($custom_template)) {
             return $custom_template;
