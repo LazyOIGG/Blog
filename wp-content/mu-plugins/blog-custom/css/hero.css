@@ -7,7 +7,11 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background: var(--color-black);
+    background-color: var(--color-white-dim);
+    background-image: url('../static/images/bg_test.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     scroll-snap-align: start;
 }
 
@@ -26,7 +30,7 @@
 }
 
 .hero-scroll-hint span {
-    font-family: var(--font-mono);
+    font-family: var(--font-family);
     font-size: 11px;
     letter-spacing: 3px;
     color: var(--color-gray);
@@ -54,10 +58,11 @@
 .hero-content {
     max-width: 1200px;
     width: 100%;
+    transform: translate(-550px, -350px);
 }
 
 .hero-tag {
-    font-family: var(--font-mono);
+    font-family: var(--font-family);
     font-size: 12px;
     letter-spacing: 4px;
     color: var(--color-gray-light);
@@ -73,7 +78,7 @@
 }
 
 .hero-title {
-    font-family: var(--font-display);
+    font-family: var(--font-family);
     font-size: clamp(48px, 8vw, 120px);
     font-weight: 900;
     line-height: 0.95;

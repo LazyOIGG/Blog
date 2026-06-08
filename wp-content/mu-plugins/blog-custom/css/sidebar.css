@@ -5,18 +5,18 @@
 
 /* ---- CSS Variables ---- */
 :root {
-    --ak-bg-primary: rgba(10, 10, 10, 0.92);
-    --ak-bg-secondary: rgba(17, 17, 17, 0.95);
-    --ak-bg-hover: rgba(255, 250, 0, 0.06);
-    --ak-bg-active: rgba(255, 250, 0, 0.1);
-    --ak-accent: #FFFA00;
-    --ak-accent-dim: rgba(255, 250, 0, 0.35);
-    --ak-accent-glow: rgba(255, 250, 0, 0.08);
-    --ak-text-primary: #f5f5f5;
-    --ak-text-secondary: #999999;
-    --ak-text-dim: #666666;
-    --ak-border: rgba(255, 250, 0, 0.15);
-    --ak-border-subtle: rgba(255, 255, 255, 0.06);
+    --ak-bg-primary: rgba(255, 255, 255, 0.98);
+    --ak-bg-secondary: rgba(245, 245, 245, 0.98);
+    --ak-bg-hover: rgba(0, 0, 0, 0.05);
+    --ak-bg-active: rgba(0, 0, 0, 0.08);
+    --ak-accent: #111111;
+    --ak-accent-dim: rgba(0, 0, 0, 0.2);
+    --ak-accent-glow: rgba(0, 0, 0, 0.05);
+    --ak-text-primary: #111111;
+    --ak-text-secondary: #666666;
+    --ak-text-dim: #999999;
+    --ak-border: rgba(0, 0, 0, 0.15);
+    --ak-border-subtle: rgba(0, 0, 0, 0.08);
     --ak-danger: #FF3333;
     --ak-success: #00CC66;
     --ak-sidebar-collapsed: 106px;
@@ -53,8 +53,8 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--ak-accent), transparent);
-    opacity: 0.6;
+    background: linear-gradient(90deg, transparent, var(--ak-border-subtle), transparent);
+    opacity: 0.8;
 }
 
 /* Bottom accent line */
@@ -65,8 +65,8 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--ak-accent-dim), transparent);
-    opacity: 0.3;
+    background: linear-gradient(90deg, transparent, var(--ak-border-subtle), transparent);
+    opacity: 0.5;
 }
 
 .ak-sidebar.expanded {
@@ -125,7 +125,7 @@
 }
 
 .ak-sidebar-logo .logo-text {
-    font-family: 'Orbitron', monospace;
+    font-family: var(--font-family);
     font-size: 20px;
     font-weight: 700;
     color: var(--ak-accent);
@@ -187,7 +187,7 @@
     align-items: center;
     height: 42px;
     padding: 0 20px;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-family);
     font-size: 15px;
     color: var(--ak-text-dim);
     text-transform: uppercase;
@@ -295,7 +295,7 @@
 
 /* ---- Label ---- */
 .ak-nav-label {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: var(--font-family);
     font-size: 21px;
     font-weight: 500;
     margin-left: 12px;
@@ -473,7 +473,7 @@
     background: var(--ak-bg-secondary);
     border: 1px solid var(--ak-border);
     border-radius: var(--ak-radius);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: var(--font-family);
     font-size: 13px;
     color: var(--ak-text-primary);
     white-space: nowrap;
@@ -566,7 +566,7 @@
 
 /* ---- Data Readout ---- */
 .ak-data-readout {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-family);
     font-size: 15px;
     color: var(--ak-text-dim);
     padding: 8px 20px;

@@ -55,11 +55,11 @@ class LoadingSequence {
         this.progress = progress;
         // 从上到下填充
         progressBar.style.height = `${progress}%`;
-        
+
         // 更新百分比文字
         progressText.textContent = `${Math.round(progress)}%`;
-        
-        // 让百分比跟随进度条顶端移动
+
+        // 让百分比跟随进度条底部移动（从上到下）
         progressText.style.top = `${progress}%`;
     }
 

@@ -25,7 +25,7 @@
 }
 
 .article-subtitle {
-    font-family: var(--font-display);
+    font-family: var(--font-family);
     font-size: 14px;
     letter-spacing: 3px;
     color: var(--color-gray-light);
@@ -33,7 +33,7 @@
 }
 
 .article-date {
-    font-family: var(--font-mono);
+    font-family: var(--font-family);
     font-size: 12px;
     color: var(--color-gray);
 }
@@ -48,7 +48,7 @@
     padding: 6px 16px;
     background: var(--color-white-dim);
     border: 1px solid var(--color-gray-lighter);
-    font-family: var(--font-mono);
+    font-family: var(--font-family);
     font-size: 11px;
     letter-spacing: 1px;
     color: var(--color-gray);
@@ -56,9 +56,9 @@
 }
 
 .tag:hover {
-    background: var(--color-black);
-    color: var(--color-white);
-    border-color: var(--color-black);
+    background: var(--color-accent);
+    color: var(--color-black);
+    border-color: var(--color-accent);
 }
 
 .article-intro {
@@ -141,7 +141,7 @@
 .deco-text {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    font-family: var(--font-display);
+    font-family: var(--font-family);
     font-size: 12px;
     letter-spacing: 4px;
     color: var(--color-white);
@@ -197,7 +197,7 @@
 }
 
 .article-body h2 {
-    font-family: var(--font-display);
+    font-family: var(--font-family);
     font-size: 24px;
     letter-spacing: 2px;
     color: var(--color-black);
@@ -207,7 +207,7 @@
 }
 
 .article-body h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-family);
     font-size: 18px;
     letter-spacing: 1px;
     color: var(--color-black);

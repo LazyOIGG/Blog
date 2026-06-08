@@ -1,9 +1,18 @@
+/* ==================== 字体定义 ==================== */
+@font-face {
+    font-family: 'HarmonyOS Sans SC';
+    src: url('../static/fonts/HarmonyOS_Sans_SC_Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* ==================== 基础重置与变量 ==================== */
 :root {
-    /* 主色调 - 极简工业风 */
-    --color-black: #0a0a0a;
-    --color-dark: #111111;
-    --color-gray-dark: #222222;
+    /* 主色调 - 极简工业风（浅色主题） */
+    --color-black: #111111;
+    --color-dark: #222222;
+    --color-gray-dark: #333333;
     --color-gray: #666666;
     --color-gray-light: #999999;
     --color-gray-lighter: #cccccc;
@@ -22,9 +31,7 @@
     --color-orange: #FF6600;
 
     /* 字体 */
-    --font-display: 'Orbitron', sans-serif;
-    --font-body: 'Rajdhani', sans-serif;
-    --font-mono: 'Share Tech Mono', monospace;
+    --font-family: 'HarmonyOS Sans SC', sans-serif;
 
     /* 间距 */
     --spacing-xs: 0.25rem;
@@ -54,7 +61,7 @@ html {
 }
 
 body {
-    font-family: var(--font-body);
+    font-family: var(--font-family);
     background-color: var(--color-white);
     color: var(--color-black);
     overflow-x: hidden;

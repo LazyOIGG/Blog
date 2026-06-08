@@ -38,6 +38,7 @@
         <div class="hud-elements">
         </div>
         <div class="wipe-mask" id="wipeMask"></div>
+        <div class="loading-slogan">OVER THE FRONTIER/INTO THE FRONT</div>
     </div>
 
     <!-- 主页面内容 -->

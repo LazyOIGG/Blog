@@ -14,14 +14,14 @@
 }
 
 .footer-logo {
-    font-family: var(--font-display);
+    font-family: var(--font-family);
     font-size: 18px;
     letter-spacing: 4px;
     color: var(--color-accent);
 }
 
 .footer-text {
-    font-family: var(--font-mono);
+    font-family: var(--font-family);
     font-size: 11px;
     letter-spacing: 2px;
     color: var(--color-gray-light);
