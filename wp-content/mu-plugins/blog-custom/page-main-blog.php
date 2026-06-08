@@ -15,7 +15,7 @@
     <style>
         body, html { margin: 0 !important; padding: 0 !important; }
     </style>
-    <link rel="stylesheet" href="https://ncyoigg.top/wp-content/mu-plugins/blog-custom/arknights-sidebar.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom"); ?>/arknights-sidebar.css">
 </head>
 <body>
     <!-- 左侧进度条 - 紧贴浏览器左边缘 -->
@@ -26,32 +26,9 @@
         </div>
     </div>
     <div class="progress-text" id="progressText">0%</div>
-    <div class="progress-label" id="progressLabel">SYSTEM INITIALIZATION</div>
-    
     <!-- 加载界面 -->
     <div class="loading-screen" id="loadingScreen">
         <div class="hud-elements">
-            <div class="scan-line"></div>
-            <div class="data-stream left">
-                <div class="data-line">SYS_CHECK: ████████████ 100%</div>
-                <div class="data-line">MEM_ALLOC: 0x7FFF2A00</div>
-                <div class="data-line">CORE_TEMP: 42.7°C</div>
-                <div class="data-line">NET_STATUS: CONNECTED</div>
-            </div>
-            <div class="data-stream right">
-                <div class="data-line">AUTH_TOKEN: VALID</div>
-                <div class="data-line">DB_CONN: ESTABLISHED</div>
-                <div class="data-line">CACHE_HIT: 94.2%</div>
-                <div class="data-line">LOAD_SEQ: 0x00FF1A</div>
-            </div>
-            <div class="corner top-left"></div>
-            <div class="corner top-right"></div>
-            <div class="corner bottom-left"></div>
-            <div class="corner bottom-right"></div>
-            <div class="system-info">
-                <div class="system-title">INDUSTRIAL BLOG SYSTEM</div>
-                <div class="system-subtitle">INITIALIZING CORE MODULES...</div>
-            </div>
         </div>
         <div class="wipe-mask" id="wipeMask"></div>
     </div>
@@ -471,6 +448,6 @@
     </div>
 
     <script src="<?php echo content_url("/mu-plugins/blog-custom"); ?>/main-blog.js"></script>
-    <script src="https://ncyoigg.top/wp-content/mu-plugins/blog-custom/arknights-sidebar.js"></script>
+    <script src="<?php echo content_url("/mu-plugins/blog-custom"); ?>/arknights-sidebar.js"></script>
 </body>
 </html>

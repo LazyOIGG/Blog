@@ -19,8 +19,8 @@
     --ak-border-subtle: rgba(255, 255, 255, 0.06);
     --ak-danger: #FF3333;
     --ak-success: #00CC66;
-    --ak-sidebar-collapsed: 68px;
-    --ak-sidebar-expanded: 260px;
+    --ak-sidebar-collapsed: 106px;
+    --ak-sidebar-expanded: 318px;
     --ak-transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --ak-transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
     --ak-glass-blur: 20px;
@@ -96,7 +96,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 68px;
+    height: 102px;
     padding: 0;
     border-bottom: 1px solid var(--ak-border-subtle);
     position: relative;
@@ -108,8 +108,8 @@
 }
 
 .ak-sidebar-logo .logo-icon {
-    width: 36px;
-    height: 36px;
+    width: 54px;
+    height: 54px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,8 +117,8 @@
 }
 
 .ak-sidebar-logo .logo-icon svg {
-    width: 28px;
-    height: 28px;
+    width: 42px;
+    height: 42px;
     fill: none;
     stroke: var(--ak-accent);
     stroke-width: 1.5;
@@ -126,18 +126,20 @@
 
 .ak-sidebar-logo .logo-text {
     font-family: 'Orbitron', monospace;
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--ak-accent);
     letter-spacing: 3px;
     margin-left: 12px;
     white-space: nowrap;
+    display: none;
     opacity: 0;
     transform: translateX(-10px);
     transition: all 0.3s var(--ak-transition-smooth);
 }
 
 .ak-sidebar.expanded .logo-text {
+    display: inline;
     opacity: 1;
     transform: translateX(0);
 }
@@ -183,10 +185,10 @@
 .ak-section-label {
     display: none;
     align-items: center;
-    height: 28px;
+    height: 42px;
     padding: 0 20px;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
+    font-size: 15px;
     color: var(--ak-text-dim);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -225,7 +227,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 42px;
+    height: 63px;
     padding: 0;
     margin: 2px 8px;
     border-radius: var(--ak-radius);
@@ -261,8 +263,8 @@
 
 /* ---- Icon Container (Fixed alignment) ---- */
 .ak-nav-icon {
-    width: 36px;
-    height: 36px;
+    width: 54px;
+    height: 54px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,8 +273,8 @@
 }
 
 .ak-nav-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 27px;
+    height: 27px;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.5;
@@ -294,7 +296,7 @@
 /* ---- Label ---- */
 .ak-nav-label {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 14px;
+    font-size: 21px;
     font-weight: 500;
     margin-left: 12px;
     white-space: nowrap;
@@ -369,8 +371,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 54px;
+    height: 54px;
     margin: 0 auto;
     border: 1px solid var(--ak-border-subtle);
     border-radius: var(--ak-radius);
@@ -387,8 +389,8 @@
 }
 
 .ak-toggle-btn svg {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
@@ -514,7 +516,7 @@
     display: none;
     align-items: center;
     justify-content: center;
-    height: 42px;
+    height: 63px;
     padding: 0;
     margin: 2px 8px;
     border-radius: var(--ak-radius);
@@ -565,7 +567,7 @@
 /* ---- Data Readout ---- */
 .ak-data-readout {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
+    font-size: 15px;
     color: var(--ak-text-dim);
     padding: 8px 20px;
     display: none;
