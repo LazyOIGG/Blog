@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo get_bloginfo("name"); ?> - Industrial Blog</title>
+    <title><?php echo get_bloginfo("name"); ?> - Blog</title>
     <!-- CSS 模块 -->
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/variables.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/loading.css">
@@ -97,52 +97,6 @@
 
                 <div class="mobile-nav-divider"></div>
 
-                <!-- Explore Section -->
-                <div class="mobile-nav-section">
-                    <div class="mobile-nav-section-label">Explore</div>
-                    <a href="#search" class="mobile-nav-item" data-section="search">
-                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <span>Search</span>
-                    </a>
-                    <a href="#categories" class="mobile-nav-item" data-section="categories">
-                        <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                        <span>Categories</span>
-                    </a>
-                    <a href="#timeline" class="mobile-nav-item" data-section="timeline">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Timeline</span>
-                    </a>
-                    <a href="#featured" class="mobile-nav-item" data-section="featured">
-                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <span>Featured</span>
-                    </a>
-                </div>
-
-                <div class="mobile-nav-divider"></div>
-
-                <!-- Developer Center -->
-                <div class="mobile-nav-section">
-                    <div class="mobile-nav-section-label">Developer</div>
-                    <a href="#github" class="mobile-nav-item" data-section="github">
-                        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="#opensource" class="mobile-nav-item" data-section="opensource">
-                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <span>Open Source</span>
-                    </a>
-                    <a href="#techstack" class="mobile-nav-item" data-section="techstack">
-                        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        <span>Tech Stack</span>
-                    </a>
-                    <a href="#lab" class="mobile-nav-item" data-section="lab">
-                        <svg viewBox="0 0 24 24"><path d="M9 3h6v11l4 8H5l4-8V3z"/><line x1="9" y1="3" x2="15" y2="3"/></svg>
-                        <span>Lab</span>
-                    </a>
-                </div>
-
-                <div class="mobile-nav-divider"></div>
-
                 <!-- Quick Tools -->
                 <div class="mobile-nav-section">
                     <div class="mobile-nav-section-label">Quick Tools</div>
@@ -150,14 +104,28 @@
                         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                         <span>Language</span>
                     </a>
-                    <a href="#stats" class="mobile-nav-item" data-section="stats">
-                        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                        <span>Site Stats</span>
-                    </a>
-                    <a href="#settings" class="mobile-nav-item" data-section="settings">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                        <span>Settings</span>
-                    </a>
+                    <div class="mobile-nav-item mobile-nav-dark-mode" data-action="darkMode">
+                        <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        <span>Dark Mode</span>
+                        <div class="mobile-nav-tri-state">
+                            <button class="mobile-nav-tri-state-btn active" data-value="off">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                            </button>
+                            <button class="mobile-nav-tri-state-btn" data-value="system">
+                                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </button>
+                            <button class="mobile-nav-tri-state-btn" data-value="on">
+                                <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mobile-nav-item mobile-nav-music" data-action="music">
+                        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                        <span>Music</span>
+                        <div class="mobile-nav-switch-track">
+                            <div class="mobile-nav-switch-thumb"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mobile-nav-divider"></div>
@@ -269,102 +237,7 @@
             </div>
             
             <div class="nav-divider"></div>
-            
-            <!-- Explore Section -->
-            <div class="nav-section">
-                <div class="nav-section-label">Explore</div>
-                <a href="#search" class="nav-item" data-section="search">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="11" cy="11" r="8"/>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Search</span>
-                    <span class="nav-tooltip">Search</span>
-                </a>
-                <a href="#categories" class="nav-item" data-section="categories">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <line x1="8" y1="6" x2="21" y2="6"/>
-                            <line x1="8" y1="12" x2="21" y2="12"/>
-                            <line x1="8" y1="18" x2="21" y2="18"/>
-                            <line x1="3" y1="6" x2="3.01" y2="6"/>
-                            <line x1="3" y1="12" x2="3.01" y2="12"/>
-                            <line x1="3" y1="18" x2="3.01" y2="18"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Categories</span>
-                    <span class="nav-tooltip">Categories</span>
-                </a>
-                <a href="#timeline" class="nav-item" data-section="timeline">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12 6 12 12 16 14"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Timeline</span>
-                    <span class="nav-tooltip">Timeline</span>
-                </a>
-                <a href="#featured" class="nav-item" data-section="featured">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Featured</span>
-                    <span class="nav-tooltip">Featured</span>
-                </a>
-            </div>
-            
-            <div class="nav-divider"></div>
-            
-            <!-- Developer Center -->
-            <div class="nav-section">
-                <div class="nav-section-label">Developer</div>
-                <a href="#github" class="nav-item" data-section="github">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">GitHub</span>
-                    <span class="nav-tooltip">GitHub</span>
-                </a>
-                <a href="#opensource" class="nav-item" data-section="opensource">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Open Source</span>
-                    <span class="nav-tooltip">Open Source</span>
-                </a>
-                <a href="#techstack" class="nav-item" data-section="techstack">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <polyline points="16 18 22 12 16 6"/>
-                            <polyline points="8 6 2 12 8 18"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Tech Stack</span>
-                    <span class="nav-tooltip">Tech Stack</span>
-                </a>
-                <a href="#lab" class="nav-item" data-section="lab">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M9 3h6v11l4 8H5l4-8V3z"/>
-                            <line x1="9" y1="3" x2="15" y2="3"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Lab</span>
-                    <span class="nav-tooltip">Lab</span>
-                </a>
-            </div>
-            
-            <div class="nav-divider"></div>
-            
+
             <!-- Quick Tools -->
             <div class="nav-section">
                 <div class="nav-section-label">Quick Tools</div>
@@ -379,39 +252,45 @@
                     <span class="nav-label">Language</span>
                     <span class="nav-tooltip">Language</span>
                 </a>
-                <a href="#stats" class="nav-item" data-section="stats">
+                <div class="nav-item nav-dark-mode" data-action="darkMode">
                     <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <line x1="18" y1="20" x2="18" y2="10"/>
-                            <line x1="12" y1="20" x2="12" y2="4"/>
-                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        <!-- 关闭状态图标（太阳） -->
+                        <svg class="nav-dark-icon off" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
                         </svg>
-                    </div>
-                    <span class="nav-label">Site Stats</span>
-                    <span class="nav-tooltip">Site Stats</span>
-                </a>
-                <a href="#settings" class="nav-item" data-section="settings">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        <!-- 跟随系统图标（自动） -->
+                        <svg class="nav-dark-icon system" viewBox="0 0 24 24" style="display:none">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
                         </svg>
-                    </div>
-                    <span class="nav-label">Settings</span>
-                    <span class="nav-tooltip">Settings</span>
-                </a>
-                <div class="nav-toggle-switch" data-action="darkMode">
-                    <div class="nav-icon">
-                        <svg viewBox="0 0 24 24">
+                        <!-- 开启状态图标（月亮） -->
+                        <svg class="nav-dark-icon on" viewBox="0 0 24 24" style="display:none">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                         </svg>
                     </div>
                     <span class="nav-label">Dark Mode</span>
-                    <div class="nav-switch-track active">
-                        <div class="nav-switch-thumb"></div>
+                    <div class="nav-tri-state">
+                        <button class="nav-tri-state-btn active" data-value="off" title="Off">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        </button>
+                        <button class="nav-tri-state-btn" data-value="system" title="System">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </button>
+                        <button class="nav-tri-state-btn" data-value="on" title="On">
+                            <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        </button>
                     </div>
                 </div>
-                <div class="nav-toggle-switch" data-action="music">
+                <div class="nav-item nav-music" data-action="music">
                     <div class="nav-icon">
                         <svg viewBox="0 0 24 24">
                             <path d="M9 18V5l12-2v13"/>
@@ -420,8 +299,13 @@
                         </svg>
                     </div>
                     <span class="nav-label">Music</span>
-                    <div class="nav-switch-track">
-                        <div class="nav-switch-thumb"></div>
+                    <div class="nav-music-status">
+                        <span class="nav-music-status-icon">♫</span>
+                    </div>
+                    <div class="nav-music-switch">
+                        <div class="nav-music-switch-track">
+                            <div class="nav-music-switch-thumb"></div>
+                        </div>
                     </div>
                 </div>
             </div>

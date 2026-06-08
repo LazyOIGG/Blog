@@ -564,6 +564,144 @@
     transform: translateX(16px);
 }
 
+/* ---- Tri-State Switch (Dark Mode) ---- */
+.nav-dark-mode .nav-icon {
+    position: relative;
+}
+
+.nav-dark-icon {
+    width: 27px;
+    height: 27px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+/* 收缩时隐藏三态按钮，显示状态图标 */
+.nav-dark-mode .nav-tri-state {
+    display: none;
+}
+
+/* 展开时显示三态按钮 */
+.side-nav.expanded .nav-dark-mode .nav-tri-state {
+    display: flex;
+    margin-left: auto;
+    gap: 4px;
+}
+
+.side-nav.expanded .nav-dark-mode .nav-icon {
+    display: none;
+}
+
+.nav-tri-state-btn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid var(--nav-border-subtle);
+    background: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-tri-state-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--nav-text-dim);
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.nav-tri-state-btn:hover {
+    border-color: var(--nav-accent);
+}
+
+.nav-tri-state-btn.active {
+    background: var(--nav-accent);
+    border-color: var(--nav-accent);
+}
+
+.nav-tri-state-btn.active svg {
+    stroke: var(--color-white);
+}
+
+/* ---- Music Switch ---- */
+/* 收缩时隐藏音乐图标和开关，只显示状态指示器 */
+.nav-music .nav-icon {
+    display: none;
+}
+
+.nav-music-switch {
+    display: none;
+}
+
+.nav-music-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+}
+
+.nav-music-status-icon {
+    font-size: 18px;
+    color: var(--nav-text-dim);
+    transition: color 0.2s ease;
+}
+
+/* 音乐开启时的状态 */
+.nav-music.active .nav-music-status-icon {
+    color: var(--nav-accent);
+}
+
+/* 展开时显示音乐图标和开关，隐藏状态指示器 */
+.side-nav.expanded .nav-music .nav-icon {
+    display: flex;
+}
+
+.side-nav.expanded .nav-music-status {
+    display: none;
+}
+
+.side-nav.expanded .nav-music-switch {
+    display: flex;
+    margin-left: auto;
+}
+
+/* Music 开关样式（与汉堡菜单一致） */
+.nav-music-switch-track {
+    width: 36px;
+    height: 20px;
+    background: var(--nav-text-dim);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-music.active .nav-music-switch-track {
+    background: var(--nav-accent);
+}
+
+.nav-music-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: var(--color-white);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.nav-music.active .nav-music-switch-thumb {
+    transform: translateX(16px);
+}
+
 /* ---- Data Readout ---- */
 .nav-data-readout {
     font-family: var(--font-family);

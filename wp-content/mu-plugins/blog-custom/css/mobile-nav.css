@@ -193,6 +193,79 @@
         flex-shrink: 0;
     }
 
+    /* 三态开关（Dark Mode） */
+    .mobile-nav-tri-state {
+        display: flex;
+        margin-left: auto;
+        gap: 6px;
+    }
+
+    .mobile-nav-tri-state-btn {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        background: transparent;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-nav-tri-state-btn svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--color-gray);
+        stroke-width: 1.5;
+        fill: none;
+    }
+
+    .mobile-nav-tri-state-btn:hover {
+        border-color: var(--color-black);
+    }
+
+    .mobile-nav-tri-state-btn.active {
+        background: var(--color-black);
+        border-color: var(--color-black);
+    }
+
+    .mobile-nav-tri-state-btn.active svg {
+        stroke: var(--color-white);
+    }
+
+    /* 开关（Music） */
+    .mobile-nav-switch-track {
+        width: 40px;
+        height: 22px;
+        background: var(--color-gray-lighter);
+        border-radius: 11px;
+        position: relative;
+        margin-left: auto;
+        transition: background 0.2s ease;
+        cursor: pointer;
+    }
+
+    .mobile-nav-music.active .mobile-nav-switch-track {
+        background: var(--color-black);
+    }
+
+    .mobile-nav-switch-thumb {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 16px;
+        height: 16px;
+        background: var(--color-white);
+        border-radius: 50%;
+        transition: transform 0.2s ease;
+    }
+
+    .mobile-nav-music.active .mobile-nav-switch-thumb {
+        transform: translateX(18px);
+    }
+
     /* 隐藏横屏侧边栏 */
     .side-nav {
         display: none;
