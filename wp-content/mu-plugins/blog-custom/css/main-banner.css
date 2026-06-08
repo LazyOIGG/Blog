@@ -1,5 +1,5 @@
 /* ==================== 页面主标题区域 ==================== */
-.hero-section {
+.main-banner {
     height: 100vh;
     padding: 0 80px;
     display: flex;
@@ -16,7 +16,7 @@
 }
 
 /* 滚动指示器 */
-.hero-scroll-hint {
+.main-banner-scroll-hint {
     position: absolute;
     bottom: 40px;
     left: 50%;
@@ -29,7 +29,7 @@
     animation: scrollHintFadeIn 1s ease 2.5s forwards;
 }
 
-.hero-scroll-hint span {
+.main-banner-scroll-hint span {
     font-family: var(--font-family);
     font-size: 11px;
     letter-spacing: 3px;
@@ -37,7 +37,7 @@
     text-transform: uppercase;
 }
 
-.hero-scroll-hint .scroll-arrow {
+.main-banner-scroll-hint .scroll-arrow {
     width: 20px;
     height: 20px;
     border-right: 2px solid var(--color-accent);
@@ -55,13 +55,13 @@
     50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
 }
 
-.hero-content {
+.main-banner-content {
     max-width: 1200px;
     width: 100%;
     transform: translate(-550px, -350px);
 }
 
-.hero-tag {
+.main-banner-tag {
     font-family: var(--font-family);
     font-size: 12px;
     letter-spacing: 4px;
@@ -72,12 +72,12 @@
     transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.hero-tag.revealed {
+.main-banner-tag.revealed {
     opacity: 1;
     transform: translateX(0);
 }
 
-.hero-title {
+.main-banner-title {
     font-family: var(--font-family);
     font-size: clamp(48px, 8vw, 120px);
     font-weight: 900;
@@ -87,23 +87,23 @@
     margin-bottom: 40px;
 }
 
-.hero-title-line {
+.main-banner-title-line {
     display: block;
     opacity: 0;
     transform: translateY(50px);
     transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.hero-title-line.revealed {
+.main-banner-title-line.revealed {
     opacity: 1;
     transform: translateY(0);
 }
 
-.hero-title-line.accent {
+.main-banner-title-line.accent {
     color: var(--color-accent);
 }
 
-.hero-description {
+.main-banner-description {
     font-size: 18px;
     color: var(--color-gray);
     max-width: 500px;
@@ -113,21 +113,14 @@
     transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.hero-description.revealed {
+.main-banner-description.revealed {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* 装饰元素 */
-.hero-decoration {
-    position: absolute;
-    right: 80px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 300px;
-    height: 400px;
-    display: flex;
-    gap: 20px;
+/* 装饰元素 - 已移除 */
+.main-banner-decoration {
+    display: none;
 }
 
 .deco-line {

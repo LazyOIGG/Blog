@@ -1,49 +1,49 @@
 /**
- * Arknights Endfield Inspired Sidebar
- * Industrial Sci-Fi Navigation System
+ * 侧边导航栏
+ * 工业科幻风格导航系统
  */
 
-class ArknightsSidebar {
+class SideNav {
     constructor() {
         this.sidebar = null;
         this.isExpanded = false;
         this.expandTimeout = null;
         this.collapseTimeout = null;
         this.activeSection = 'home';
-        
+
         this.init();
     }
 
     init() {
-        this.sidebar = document.querySelector('.ak-sidebar');
+        this.sidebar = document.querySelector('.side-nav');
         if (!this.sidebar) return;
 
         this.bindEvents();
         this.setActiveItem();
         this.initScanLine();
-        
-        console.log('[AK Sidebar] Initialized');
+
+        console.log('[SideNav] Initialized');
     }
 
     bindEvents() {
         // Hover expand/collapse
         this.sidebar.addEventListener('mouseenter', () => this.handleMouseEnter());
         this.sidebar.addEventListener('mouseleave', () => this.handleMouseLeave());
-        
+
         // Nav items click
-        const navItems = this.sidebar.querySelectorAll('.ak-nav-item');
+        const navItems = this.sidebar.querySelectorAll('.nav-item');
         navItems.forEach(item => {
             item.addEventListener('click', (e) => this.handleNavClick(e, item));
         });
-        
+
         // Toggle switches
-        const toggles = this.sidebar.querySelectorAll('.ak-toggle-switch');
+        const toggles = this.sidebar.querySelectorAll('.nav-toggle-switch');
         toggles.forEach(toggle => {
             toggle.addEventListener('click', () => this.handleToggle(toggle));
         });
-        
+
         // Toggle button
-        const toggleBtn = this.sidebar.querySelector('.ak-toggle-btn');
+        const toggleBtn = this.sidebar.querySelector('.nav-toggle-btn');
         if (toggleBtn) {
             toggleBtn.addEventListener('click', () => this.toggleSidebar());
         }
@@ -89,7 +89,7 @@ class ArknightsSidebar {
     }
 
     animateLabels() {
-        const labels = this.sidebar.querySelectorAll('.ak-nav-label');
+        const labels = this.sidebar.querySelectorAll('.nav-label');
         labels.forEach((label, index) => {
             label.style.transitionDelay = `${index * 0.02}s`;
         });
@@ -97,19 +97,19 @@ class ArknightsSidebar {
 
     handleNavClick(e, item) {
         // Remove active from all
-        const allItems = this.sidebar.querySelectorAll('.ak-nav-item');
+        const allItems = this.sidebar.querySelectorAll('.nav-item');
         allItems.forEach(i => i.classList.remove('active'));
-        
+
         // Add active to clicked
         item.classList.add('active');
-        
+
         // Get section
         const section = item.dataset.section;
         if (section) {
             this.activeSection = section;
             this.scrollToSection(section);
         }
-        
+
         // Play click sound (optional)
         this.playClickSound();
     }
@@ -124,8 +124,8 @@ class ArknightsSidebar {
     setActiveItem() {
         // Set based on current scroll position
         const sections = document.querySelectorAll('section[id]');
-        const navItems = this.sidebar.querySelectorAll('.ak-nav-item');
-        
+        const navItems = this.sidebar.querySelectorAll('.nav-item');
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -141,10 +141,10 @@ class ArknightsSidebar {
     }
 
     handleToggle(toggle) {
-        const track = toggle.querySelector('.ak-switch-track');
+        const track = toggle.querySelector('.nav-switch-track');
         if (track) {
             track.classList.toggle('active');
-            
+
             // Handle specific toggles
             const action = toggle.dataset.action;
             if (action === 'darkMode') {
@@ -153,13 +153,13 @@ class ArknightsSidebar {
                 this.toggleMusic();
             }
         }
-        
+
         this.playClickSound();
     }
 
     toggleMusic() {
         // Placeholder for music toggle
-        console.log('[AK Sidebar] Music toggle');
+        console.log('[SideNav] Music toggle');
     }
 
     initScanLine() {
@@ -180,5 +180,5 @@ class ArknightsSidebar {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    window.akSidebar = new ArknightsSidebar();
+    window.sideNav = new SideNav();
 });

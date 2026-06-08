@@ -114,6 +114,22 @@
     display: none;
 }
 
+/* ==================== 竖屏模式加载页面 ==================== */
+@media (orientation: portrait) {
+    /* 标语居中显示 */
+    .loading-slogan {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        right: auto;
+        bottom: auto;
+        text-align: center;
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+}
+
 /* ==================== 主页面内容 ==================== */
 .main-content {
     opacity: 0;

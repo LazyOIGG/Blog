@@ -13,12 +13,12 @@ const mainContent = document.getElementById('mainContent');
 // 侧边导航
 const sidebarNav = document.getElementById('sidebarNav');
 
-// 英雄区域元素
-const heroTag = document.getElementById('heroTag');
-const heroLine1 = document.getElementById('heroLine1');
-const heroLine2 = document.getElementById('heroLine2');
-const heroLine3 = document.getElementById('heroLine3');
-const heroDesc = document.getElementById('heroDesc');
+// 主标题区域元素
+const bannerTag = document.getElementById('bannerTag');
+const bannerLine1 = document.getElementById('bannerLine1');
+const bannerLine2 = document.getElementById('bannerLine2');
+const bannerLine3 = document.getElementById('bannerLine3');
+const bannerDesc = document.getElementById('bannerDesc');
 
 // ==================== 加载进度模拟 ====================
 class LoadingSequence {
@@ -76,17 +76,18 @@ class LoadingSequence {
         if (progressText) progressText.style.display = 'none';
         if (progressDot) progressDot.style.display = 'none';
         if (progressLabel) progressLabel.style.display = 'none';
-        
+
         // 显示擦除遮罩
         wipeMask.style.display = 'block';
+        wipeMask.style.opacity = '1';
 
-        // 雨刮动画：从左边缘开始，宽度从 0% 扩展到 100%
-        const duration = 1200; // 1.2秒转场
+        // 阶段1：雨刮动画（从左到右扩展）
+        const wipeDuration = 1000; // 1秒雨刮
         const startTime = performance.now();
 
         const animateWipe = (currentTime) => {
             const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
+            const progress = Math.min(elapsed / wipeDuration, 1);
 
             // 使用缓动函数让动画更自然
             const eased = this.easeInOutCubic(progress);
@@ -95,37 +96,62 @@ class LoadingSequence {
             if (progress < 1) {
                 requestAnimationFrame(animateWipe);
             } else {
-                this.onWipeComplete();
+                // 雨刮完成后，开始淡化动画
+                this.startFadeTransition();
             }
         };
 
         requestAnimationFrame(animateWipe);
     }
 
-    easeInOutCubic(t) {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    startFadeTransition() {
+        // 阶段2：黄色遮罩逐渐淡化
+        const fadeDuration = 1200; // 1.2秒淡化
+        const startTime = performance.now();
+
+        // 在淡化开始时就显示主内容（在黄色遮罩下面）
+        loadingScreen.style.display = 'none';
+        mainContent.classList.add('visible');
+
+        const animateFade = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / fadeDuration, 1);
+
+            // 使用缓动函数让动画更自然
+            const eased = this.easeInOutCubic(progress);
+            wipeMask.style.opacity = `${1 - eased}`;
+
+            if (progress < 1) {
+                requestAnimationFrame(animateFade);
+            } else {
+                this.onFadeComplete();
+            }
+        };
+
+        requestAnimationFrame(animateFade);
     }
 
-    onWipeComplete() {
-        // 隐藏加载界面
-        loadingScreen.style.display = 'none';
-
-        // 显示主内容
-        mainContent.classList.add('visible');
+    onFadeComplete() {
+        // 隐藏黄色遮罩
+        wipeMask.style.display = 'none';
 
         // 开始页面元素浮现动画
         this.startRevealAnimations();
+    }
+
+    easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
 
     startRevealAnimations() {
         // 使用 Stagger 效果依次显示元素
         const revealElements = [
             { element: sidebarNav, delay: 200 },
-            { element: heroTag, delay: 400 },
-            { element: heroLine1, delay: 600 },
-            { element: heroLine2, delay: 800 },
-            { element: heroLine3, delay: 1000 },
-            { element: heroDesc, delay: 1200 }
+            { element: bannerTag, delay: 400 },
+            { element: bannerLine1, delay: 600 },
+            { element: bannerLine2, delay: 800 },
+            { element: bannerLine3, delay: 1000 },
+            { element: bannerDesc, delay: 1200 }
         ];
 
         revealElements.forEach(({ element, delay }) => {
