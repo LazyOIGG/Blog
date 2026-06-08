@@ -46,14 +46,15 @@ add_action('widgets_init', 'blog_custom_widgets_init');
 function blog_custom_enqueue_assets() {
     // CSS 模块（按依赖顺序加载）
     $css_modules = array(
-        'variables'  => 'css/variables.css',
-        'loading'    => 'css/loading.css',
-        'hero'       => 'css/hero.css',
-        'article'    => 'css/article.css',
-        'footer'     => 'css/footer.css',
-        'animations' => 'css/animations.css',
-        'sidebar'    => 'css/sidebar.css',
-        'responsive' => 'css/responsive.css',
+        'variables'    => 'css/variables.css',
+        'loading'      => 'css/loading.css',
+        'main-banner'  => 'css/main-banner.css',
+        'article'      => 'css/article.css',
+        'footer'       => 'css/footer.css',
+        'animations'   => 'css/animations.css',
+        'side-nav'     => 'css/side-nav.css',
+        'mobile-nav'   => 'css/mobile-nav.css',
+        'responsive'   => 'css/responsive.css',
     );
 
     foreach ($css_modules as $handle => $file) {
@@ -75,8 +76,16 @@ function blog_custom_enqueue_assets() {
     );
 
     wp_enqueue_script(
-        'blog-custom-sidebar',
-        BLOG_CUSTOM_URL . '/js/sidebar.js',
+        'blog-custom-side-nav',
+        BLOG_CUSTOM_URL . '/js/side-nav.js',
+        array(),
+        BLOG_CUSTOM_VERSION,
+        true
+    );
+
+    wp_enqueue_script(
+        'blog-custom-mobile-nav',
+        BLOG_CUSTOM_URL . '/js/mobile-nav.js',
         array(),
         BLOG_CUSTOM_VERSION,
         true
