@@ -282,14 +282,16 @@ class SideNav {
     // 从 localStorage 恢复暗色模式状态
     restoreDarkMode() {
         const saved = localStorage.getItem('darkMode');
-        if (!saved) return;
 
         // 设置按钮激活状态
         const darkModeItem = this.sidebar.querySelector('.nav-dark-mode');
         if (darkModeItem) {
             const buttons = darkModeItem.querySelectorAll('.nav-tri-state-btn');
             buttons.forEach(b => b.classList.remove('active'));
-            const targetBtn = darkModeItem.querySelector(`.nav-tri-state-btn[data-value="${saved}"]`);
+
+            // 如果没有保存的设置，默认使用 system
+            const mode = saved || 'system';
+            const targetBtn = darkModeItem.querySelector(`.nav-tri-state-btn[data-value="${mode}"]`);
             if (targetBtn) targetBtn.classList.add('active');
 
             // 更新图标
@@ -301,13 +303,26 @@ class SideNav {
             this.updateDarkModeIcon(buttons, icons);
         }
 
-        // 应用暗色模式
-        if (saved === 'on') {
+        // 应用暗色模式（默认跟随系统）
+        const mode = saved || 'system';
+        if (mode === 'on') {
             document.body.classList.add('dark-mode');
-        } else if (saved === 'system') {
+        } else if (mode === 'system') {
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (prefersDark) document.body.classList.add('dark-mode');
         }
+
+        // 监听系统主题变化
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            const currentMode = localStorage.getItem('darkMode') || 'system';
+            if (currentMode === 'system') {
+                if (e.matches) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            }
+        });
     }
 
     initMusicSwitch(item) {

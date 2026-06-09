@@ -88,3 +88,26 @@ body {
     background-color: var(--color-white);
     color: var(--color-black);
 }
+
+/* 暗色主题下 Projects 区域适配 */
+.dark-mode .project-card-image {
+    background: #2a2a2a;
+}
+
+.dark-mode .project-card-tag {
+    background: #333;
+    color: var(--color-accent);
+}
+
+.dark-mode .project-card {
+    border-color: #333;
+}
+
+.dark-mode .project-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .lang-dot.php { background: #9999CC; }
+.dark-mode .lang-dot.css { background: #6699FF; }
+.dark-mode .lang-dot.js { background: #FFEE88; }
+.dark-mode .lang-dot.py { background: #6699CC; }
