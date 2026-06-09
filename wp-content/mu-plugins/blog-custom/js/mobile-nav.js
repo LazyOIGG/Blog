@@ -33,9 +33,17 @@ class MobileNav {
         // 导航项点击事件（仅对有 href 的项）
         this.navItems.forEach(item => {
             item.addEventListener('click', (e) => {
+                const href = item.getAttribute('href');
+
+                // 外部链接直接跳转
+                if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+                    this.closeMenu();
+                    return; // 允许默认行为
+                }
+
+                // 内部锚点链接
                 e.preventDefault();
-                const targetId = item.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                const targetElement = document.querySelector(href);
 
                 if (targetElement) {
                     this.closeMenu();
@@ -52,6 +60,9 @@ class MobileNav {
 
         // 开关（Music）
         this.initToggleSwitches();
+
+        // 社交链接
+        this.initSocialLinks();
 
         // 监听屏幕方向变化
         window.addEventListener('resize', () => {
@@ -104,6 +115,43 @@ class MobileNav {
                 console.log('[MobileNav] Music:', isActive ? 'on' : 'off');
             });
         });
+    }
+
+    initSocialLinks() {
+        const socialItems = document.querySelectorAll('.mobile-nav-social');
+        socialItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const email = item.dataset.email;
+                if (email) {
+                    // 复制邮箱到剪贴板并显示提示
+                    navigator.clipboard.writeText(email).then(() => {
+                        this.showToast('邮箱已复制: ' + email);
+                    }).catch(() => {
+                        // 如果剪贴板 API 不可用，直接显示
+                        this.showToast('邮箱: ' + email);
+                    });
+                }
+            });
+        });
+    }
+
+    showToast(message) {
+        // 创建提示框
+        const toast = document.createElement('div');
+        toast.className = 'mobile-nav-toast';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        // 显示动画
+        setTimeout(() => toast.classList.add('show'), 10);
+
+        // 3秒后隐藏
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
     }
 
     openMenu() {

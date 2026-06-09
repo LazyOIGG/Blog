@@ -48,6 +48,9 @@ class SideNav {
             this.initMusicSwitch(musicItem);
         }
 
+        // 社交链接
+        this.initSocialLinks();
+
         // Toggle button
         const toggleBtn = this.sidebar.querySelector('.nav-toggle-btn');
         if (toggleBtn) {
@@ -237,6 +240,38 @@ class SideNav {
                 console.log('[SideNav] Music:', isActive ? 'on' : 'off');
             });
         }
+    }
+
+    initSocialLinks() {
+        const socialItems = this.sidebar.querySelectorAll('.nav-social');
+        socialItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const email = item.dataset.email;
+                if (email) {
+                    navigator.clipboard.writeText(email).then(() => {
+                        this.showToast('邮箱已复制: ' + email);
+                    }).catch(() => {
+                        this.showToast('邮箱: ' + email);
+                    });
+                }
+            });
+        });
+    }
+
+    showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'nav-toast';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => toast.classList.add('show'), 10);
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
     }
 
     initScanLine() {

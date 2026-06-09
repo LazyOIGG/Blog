@@ -727,12 +727,35 @@
     .side-nav {
         transform: translateX(-100%);
     }
-    
+
     .side-nav.expanded {
         transform: translateX(0);
     }
-    
+
     .main-content {
         margin-left: 0 !important;
     }
+}
+
+/* ---- Toast ---- */
+.nav-toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--color-black);
+    color: var(--color-white);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.nav-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
