@@ -18,6 +18,7 @@ class SideNav {
         this.sidebar = document.querySelector('.side-nav');
         if (!this.sidebar) return;
 
+        this.restoreDarkMode();
         this.bindEvents();
         this.setActiveItem();
         this.initScanLine();
@@ -186,6 +187,9 @@ class SideNav {
                 // 更新收缩状态下的图标
                 this.updateDarkModeIcon(buttons, icons);
 
+                // 保存到 localStorage
+                localStorage.setItem('darkMode', value);
+
                 if (value === 'on') {
                     document.body.classList.add('dark-mode');
                 } else if (value === 'off') {
@@ -215,6 +219,37 @@ class SideNav {
             if (icons[value]) {
                 icons[value].style.display = 'block';
             }
+        }
+    }
+
+    // 从 localStorage 恢复暗色模式状态
+    restoreDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        if (!saved) return;
+
+        // 设置按钮激活状态
+        const darkModeItem = this.sidebar.querySelector('.nav-dark-mode');
+        if (darkModeItem) {
+            const buttons = darkModeItem.querySelectorAll('.nav-tri-state-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            const targetBtn = darkModeItem.querySelector(`.nav-tri-state-btn[data-value="${saved}"]`);
+            if (targetBtn) targetBtn.classList.add('active');
+
+            // 更新图标
+            const icons = {
+                off: darkModeItem.querySelector('.nav-dark-icon.off'),
+                system: darkModeItem.querySelector('.nav-dark-icon.system'),
+                on: darkModeItem.querySelector('.nav-dark-icon.on')
+            };
+            this.updateDarkModeIcon(buttons, icons);
+        }
+
+        // 应用暗色模式
+        if (saved === 'on') {
+            document.body.classList.add('dark-mode');
+        } else if (saved === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) document.body.classList.add('dark-mode');
         }
     }
 

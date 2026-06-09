@@ -27,6 +27,22 @@
     --nav-radius: 4px;
 }
 
+/* ---- Dark Mode Nav Variables ---- */
+.dark-mode {
+    --nav-bg-primary: rgba(30, 30, 30, 0.98);
+    --nav-bg-secondary: rgba(40, 40, 40, 0.98);
+    --nav-bg-hover: rgba(255, 255, 255, 0.08);
+    --nav-bg-active: rgba(255, 255, 255, 0.12);
+    --nav-accent: #FFD600;
+    --nav-accent-dim: rgba(255, 214, 0, 0.25);
+    --nav-accent-glow: rgba(255, 214, 0, 0.08);
+    --nav-text-primary: #e8e8e8;
+    --nav-text-secondary: #aaaaaa;
+    --nav-text-dim: #777777;
+    --nav-border: rgba(255, 255, 255, 0.12);
+    --nav-border-subtle: rgba(255, 255, 255, 0.06);
+}
+
 /* ---- Sidebar Container ---- */
 .side-nav {
     position: fixed;

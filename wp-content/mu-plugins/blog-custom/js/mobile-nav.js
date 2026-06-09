@@ -11,6 +11,9 @@ class MobileNav {
     }
 
     init() {
+        // 恢复暗色模式状态
+        this.restoreDarkMode();
+
         // 汉堡按钮点击事件
         if (this.toggle) {
             this.toggle.addEventListener('click', () => this.openMenu());
@@ -88,6 +91,9 @@ class MobileNav {
                     const value = btn.dataset.value;
                     console.log('[MobileNav] Dark Mode:', value);
 
+                    // 保存到 localStorage
+                    localStorage.setItem('darkMode', value);
+
                     if (value === 'on') {
                         document.body.classList.add('dark-mode');
                     } else if (value === 'off') {
@@ -103,6 +109,29 @@ class MobileNav {
                 });
             });
         });
+    }
+
+    // 从 localStorage 恢复暗色模式状态
+    restoreDarkMode() {
+        const saved = localStorage.getItem('darkMode');
+        if (!saved) return;
+
+        // 设置按钮激活状态
+        const triStateItems = document.querySelectorAll('.mobile-nav-dark-mode');
+        triStateItems.forEach(item => {
+            const buttons = item.querySelectorAll('.mobile-nav-tri-state-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            const targetBtn = item.querySelector(`.mobile-nav-tri-state-btn[data-value="${saved}"]`);
+            if (targetBtn) targetBtn.classList.add('active');
+        });
+
+        // 应用暗色模式
+        if (saved === 'on') {
+            document.body.classList.add('dark-mode');
+        } else if (saved === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) document.body.classList.add('dark-mode');
+        }
     }
 
     initToggleSwitches() {

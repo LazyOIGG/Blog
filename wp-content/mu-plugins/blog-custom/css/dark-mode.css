@@ -1,0 +1,129 @@
+/* ==================== 暗色模式通用样式 ==================== */
+
+/* 平滑过渡 - 切换主题时 */
+.dark-mode-transition,
+.dark-mode-transition *,
+.dark-mode-transition *::before,
+.dark-mode-transition *::after {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* ==================== Footer ==================== */
+/* 暗色模式下 footer 保持黑色背景 */
+.dark-mode .footer-section {
+    background: #111111;
+    color: #ffffff;
+}
+
+/* ==================== 主 Banner ==================== */
+.dark-mode .main-banner {
+    background-color: #111111;
+}
+
+/* ==================== 文章详情 ==================== */
+.dark-mode .article-body blockquote {
+    background: var(--color-white-dim);
+    border-left-color: var(--color-accent);
+}
+
+.dark-mode .article-body a {
+    color: var(--color-accent);
+}
+
+.dark-mode .article-body a:hover {
+    color: var(--color-accent-bright);
+}
+
+.dark-mode .article-author {
+    border-top-color: var(--color-gray-lighter);
+}
+
+/* 标签 hover */
+.dark-mode .tag:hover {
+    background: var(--color-accent);
+    color: var(--color-black);
+    border-color: var(--color-accent);
+}
+
+/* ==================== 文章列表 ==================== */
+.dark-mode .article-list-item {
+    border-bottom-color: var(--color-gray-lighter);
+}
+
+.dark-mode .article-list-pagination .page-numbers:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.dark-mode .article-list-pagination .page-numbers.current {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-black);
+}
+
+/* ==================== 加载页面 ==================== */
+/* 加载页面本身是深色的，暗色模式下无需大改 */
+/* 但确保加载完成后的过渡不会闪白 */
+.dark-mode .loading-screen {
+    background-color: #111111;
+}
+
+/* ==================== Toast 提示 ==================== */
+.dark-mode .nav-toast,
+.dark-mode .mobile-nav-toast {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+/* ==================== 图片适配 ==================== */
+/* 暗色模式下给图片容器添加微妙的边框，防止与深色背景融合 */
+.dark-mode .article-image-wrapper,
+.dark-mode .article-list-thumb {
+    border: 1px solid var(--color-gray-lighter);
+}
+
+/* ==================== 滚动条 ==================== */
+.dark-mode ::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+    background: var(--color-white);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--color-gray-lighter);
+    border-radius: 3px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gray);
+}
+
+/* Firefox */
+.dark-mode {
+    scrollbar-color: var(--color-gray-lighter) var(--color-white);
+    scrollbar-width: thin;
+}
+
+/* ==================== 选择文本 ==================== */
+.dark-mode ::selection {
+    background: rgba(255, 214, 0, 0.3);
+    color: var(--color-black);
+}
+
+/* ==================== 表单元素 ==================== */
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+    background: var(--color-white-dim);
+    color: var(--color-black);
+    border-color: var(--color-gray-lighter);
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus {
+    border-color: var(--color-accent);
+    outline: none;
+}

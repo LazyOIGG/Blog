@@ -35,6 +35,7 @@
     </style>
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/side-nav.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/mobile-nav.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/dark-mode.css">
 </head>
 <body>
     <!-- 主页面内容 -->
@@ -70,7 +71,7 @@
                         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                         <span>Home</span>
                     </a>
-                    <a href="<?php echo home_url('/articles'); ?>" class="mobile-nav-item active">
+                    <a href="<?php echo home_url('/?section=articles'); ?>" class="mobile-nav-item active">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                         <span>Articles</span>
                     </a>
@@ -180,7 +181,7 @@
                         <span class="nav-label">Home</span>
                         <span class="nav-tooltip">Home</span>
                     </a>
-                    <a href="<?php echo home_url('/articles'); ?>" class="nav-item active">
+                    <a href="<?php echo home_url('/?section=articles'); ?>" class="nav-item active">
                         <div class="nav-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
