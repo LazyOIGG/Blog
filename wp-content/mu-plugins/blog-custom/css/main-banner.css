@@ -4,7 +4,7 @@
     padding: 0 80px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     overflow: hidden;
     background-color: var(--color-white-dim);
@@ -56,9 +56,9 @@
 }
 
 .main-banner-content {
-    max-width: 1200px;
+    max-width: 600px;
     width: 100%;
-    transform: translate(-550px, -350px);
+    margin-left: 5%;
 }
 
 .main-banner-tag {

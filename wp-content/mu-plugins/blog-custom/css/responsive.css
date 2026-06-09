@@ -148,8 +148,9 @@
 
     /* Hero 内容调整 */
     .main-banner-content {
-        transform: translate(0, 0);
         max-width: 100%;
+        margin-left: 0;
+        padding: 0 20px;
     }
 
     .main-banner-title {
@@ -196,8 +197,54 @@
         padding: 80px 60px;
     }
 
+    .main-banner-content {
+        max-width: 500px;
+        margin-left: 8%;
+    }
+
     .article-container {
         grid-template-columns: 250px 1fr;
+    }
+}
+
+/* 大屏幕横屏 */
+@media (orientation: landscape) and (min-width: 1400px) {
+    .main-banner-content {
+        max-width: 600px;
+        margin-left: 10%;
+    }
+
+    .main-banner-title {
+        font-size: clamp(48px, 7vw, 120px);
+    }
+}
+
+/* 中等屏幕横屏 */
+@media (orientation: landscape) and (max-width: 1200px) {
+    .main-banner-content {
+        max-width: 450px;
+        margin-left: 6%;
+    }
+
+    .main-banner {
+        padding: 60px 40px;
+    }
+}
+
+/* 小屏幕横屏 */
+@media (orientation: landscape) and (max-width: 900px) {
+    .main-banner-content {
+        max-width: 100%;
+        margin-left: 0;
+        padding: 0 20px;
+    }
+
+    .main-banner {
+        padding: 40px 20px;
+    }
+
+    .main-banner-title {
+        font-size: clamp(32px, 6vw, 60px);
     }
 }
 
