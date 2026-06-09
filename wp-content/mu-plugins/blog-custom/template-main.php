@@ -21,11 +21,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body, html { margin: 0 !important; padding: 0 !important; }
+        /* 确保页面有最小高度，底部固定在屏幕底部 */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
     </style>
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/side-nav.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/mobile-nav.css">
 </head>
 <body>
+    <!-- 立即检查：非首次访问时隐藏加载界面，避免闪烁 -->
+    <script>
+        (function() {
+            var hasVisited = sessionStorage.getItem('blog_loading_shown');
+            if (hasVisited) {
+                // 在页面渲染前添加样式，隐藏加载界面
+                var style = document.createElement('style');
+                style.textContent = '.loading-screen, .progress-container, .progress-text, .progress-dot, .progress-label { display: none !important; } .main-content { opacity: 1 !important; visibility: visible !important; }';
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
+
     <!-- 左侧进度条 - 紧贴浏览器左边缘 -->
     <div class="progress-container" id="progressContainer">
         <div class="progress-bar-track">
@@ -77,7 +101,7 @@
                         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                         <span>Home</span>
                     </a>
-                    <a href="#articles" class="mobile-nav-item" data-section="articles">
+                    <a href="<?php echo home_url('/articles'); ?>" class="mobile-nav-item">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                         <span>Articles</span>
                     </a>
@@ -187,7 +211,7 @@
                     <span class="nav-label">Home</span>
                     <span class="nav-tooltip">Home</span>
                 </a>
-                <a href="#articles" class="nav-item" data-section="articles">
+                <a href="<?php echo home_url('/articles'); ?>" class="nav-item">
                     <div class="nav-icon">
                         <svg viewBox="0 0 24 24">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -382,81 +406,89 @@
 
         <!-- 文章详情区域 -->
         <section class="article-section" id="articles">
+            <?php
+            // 获取最新文章
+            $args = array(
+                'posts_per_page' => 1,
+                'post_status' => 'publish'
+            );
+            $query = new WP_Query($args);
+            if ($query->have_posts()) :
+                while ($query->have_posts()) : $query->the_post();
+            ?>
             <div class="article-container">
-                <!-- 左侧文字栏 -->
+                <!-- 左侧信息栏 -->
                 <div class="article-sidebar">
                     <div class="article-meta">
-                        <div class="article-subtitle">FEATURED ARTICLE</div>
-                        <div class="article-date"><?php echo date("Y.m.d"); ?></div>
+                        <div class="article-date"><?php echo get_the_date("Y.m.d"); ?></div>
                         <div class="article-tags">
-                            <span class="tag">工业设计</span>
-                            <span class="tag">未来科技</span>
-                            <span class="tag">UI/UX</span>
+                            <?php
+                            $tags = get_the_tags();
+                            if ($tags) {
+                                foreach ($tags as $tag) {
+                                    echo '<span class="tag">' . esc_html($tag->name) . '</span>';
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
-                    <p class="article-intro">
-                        探索工业美学与未来科技的完美融合，
-                        记录从概念到落地的设计思考与实践。
-                    </p>
-                    <div class="decoration-bars">
-                        <div class="deco-bar"></div>
-                        <div class="deco-bar"></div>
-                        <div class="deco-bar"></div>
-                        <div class="deco-bar"></div>
+                    <div class="article-author">
+                        <div class="author-avatar">
+                            <img src="<?php echo content_url('/mu-plugins/blog-custom/static/images/avator.png'); ?>" alt="博主头像">
+                        </div>
+                        <div class="author-info">
+                            <div class="author-name"><?php the_author(); ?></div>
+                            <div class="author-role">博主</div>
+                        </div>
                     </div>
                 </div>
-                
+
                 <!-- 右侧内容栏 -->
                 <div class="article-content">
+                    <?php if (has_post_thumbnail()) : ?>
                     <div class="article-image-wrapper">
-                        <div class="article-image"></div>
-                        <div class="image-decoration">
-                            <span class="deco-text">INDUSTRIAL DESIGN</span>
-                        </div>
+                        <?php the_post_thumbnail('full', array('class' => 'article-image')); ?>
                     </div>
-                    <div class="image-nav">
-                        <button class="image-nav-btn">
-                            <svg viewBox="0 0 24 24">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button class="image-nav-btn">
-                            <svg viewBox="0 0 24 24">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                    
+                    <?php endif; ?>
+
                     <!-- 正文区域 -->
                     <div class="article-body">
-                        <h2>设计理念</h2>
-                        <p>
-                            工业设计不仅仅是外观的美化，更是功能与形式的完美统一。
-                            在这个数字化时代，我们追求的是将精密机械的严谨与数字艺术的灵动相结合，
-                            创造出既实用又美观的作品。
-                        </p>
-                        <h3>核心原则</h3>
-                        <p>
-                            每一个设计决策都源于对用户需求的深刻理解。
-                            我们相信，好的设计应该是隐形的——它自然地融入用户的生活，
-                            让复杂的操作变得简单直观。
-                        </p>
-                        <blockquote>
-                            "设计不是装饰，而是将复杂的事物变得简洁明了。"
-                        </blockquote>
-                        <h3>技术实践</h3>
-                        <p>
-                            在技术实现上，我们采用最新的前端技术和设计理念。
-                            从响应式布局到微交互设计，每一个细节都经过精心打磨，
-                            确保在不同设备和场景下都能提供最佳的用户体验。
-                        </p>
-                        <p>
-                            未来，我们将继续探索工业设计与人工智能、
-                            物联网等新兴技术的融合，创造更多令人惊叹的作品。
-                        </p>
+                        <h1 class="article-title"><?php the_title(); ?></h1>
+                        <?php the_content(); ?>
                     </div>
                 </div>
             </div>
+            <?php
+                endwhile;
+                wp_reset_postdata();
+            else :
+            // 没有文章时显示预设内容
+            ?>
+            <div class="article-container">
+                <div class="article-sidebar">
+                    <div class="article-meta">
+                        <div class="article-date"><?php echo date("Y.m.d"); ?></div>
+                    </div>
+                </div>
+                <div class="article-content">
+                    <div class="article-body article-empty">
+                        <div class="article-empty-icon">
+                            <svg viewBox="0 0 24 24" width="64" height="64">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5"/>
+                                <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5"/>
+                                <polyline points="10 9 9 9 8 9" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <h1 class="article-title">暂无文章</h1>
+                        <p class="article-empty-text">这里还没有发布任何文章，请稍后再来看看吧。</p>
+                        <div class="article-empty-divider"></div>
+                        <p class="article-empty-hint">期待精彩内容即将呈现...</p>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
         </section>
 
         <!-- 底部区域 -->

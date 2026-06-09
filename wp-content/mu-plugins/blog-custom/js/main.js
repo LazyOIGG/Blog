@@ -10,6 +10,26 @@ const progressLabel = document.getElementById('progressLabel');
 const wipeMask = document.getElementById('wipeMask');
 const mainContent = document.getElementById('mainContent');
 
+// ==================== 立即检查：非首次访问时立即隐藏加载界面 ====================
+// 在 DOM 元素获取后立即执行，避免短暂显示加载背景
+(function() {
+    const hasVisited = sessionStorage.getItem('blog_loading_shown');
+    if (hasVisited) {
+        // 立即隐藏加载界面和进度条
+        if (loadingScreen) loadingScreen.style.display = 'none';
+        if (progressContainer) progressContainer.style.display = 'none';
+        if (progressText) progressText.style.display = 'none';
+        if (progressDot) progressDot.style.display = 'none';
+        if (progressLabel) progressLabel.style.display = 'none';
+
+        // 立即显示主内容
+        if (mainContent) {
+            mainContent.style.opacity = '1';
+            mainContent.style.visibility = 'visible';
+        }
+    }
+})();
+
 // 侧边导航
 const sidebarNav = document.getElementById('sidebarNav');
 
@@ -337,14 +357,59 @@ class App {
         }
     }
 
+    /**
+     * 检查是否应该显示加载动画
+     * 仅在首次访问首页时显示，刷新或从其他页面返回时不显示
+     */
+    shouldShowLoading() {
+        // 检查 sessionStorage 中是否有标记
+        const hasVisited = sessionStorage.getItem('blog_loading_shown');
+        return !hasVisited;
+    }
+
+    /**
+     * 标记加载动画已显示
+     */
+    markLoadingShown() {
+        sessionStorage.setItem('blog_loading_shown', 'true');
+    }
+
+    /**
+     * 跳过加载动画，直接显示内容
+     */
+    skipLoading() {
+        // 隐藏加载界面
+        if (loadingScreen) loadingScreen.style.display = 'none';
+        if (progressContainer) progressContainer.style.display = 'none';
+        if (progressText) progressText.style.display = 'none';
+        if (progressDot) progressDot.style.display = 'none';
+        if (progressLabel) progressLabel.style.display = 'none';
+
+        // 直接显示主内容
+        mainContent.classList.add('visible');
+
+        // 直接显示所有需要浮现的元素
+        const revealElements = [sidebarNav, bannerTag, bannerLine1, bannerLine2, bannerLine3, bannerDesc];
+        revealElements.forEach(element => {
+            if (element) element.classList.add('revealed');
+        });
+    }
+
     start() {
         console.log('工业科幻博客系统启动');
 
         // 初始化性能监控
         this.performanceMonitor = new PerformanceMonitor();
 
-        // 启动加载序列
-        this.loadingSequence = new LoadingSequence();
+        // 判断是否显示加载动画
+        if (this.shouldShowLoading()) {
+            // 首次访问，显示加载动画
+            this.loadingSequence = new LoadingSequence();
+            this.markLoadingShown();
+        } else {
+            // 非首次访问，跳过加载动画
+            this.skipLoading();
+        }
 
         // 初始化导航
         this.navigation = new Navigation();

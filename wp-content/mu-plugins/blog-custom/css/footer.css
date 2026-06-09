@@ -1,6 +1,6 @@
 /* ==================== 底部区域 ==================== */
 .footer-section {
-    margin-top: 60px;
+    margin-top: auto; /* 自动推到底部 */
     padding: 80px;
     background: var(--color-black);
     color: var(--color-white);

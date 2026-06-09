@@ -1,0 +1,207 @@
+/* ==================== 文章列表页 ==================== */
+.article-list-section {
+    padding: 80px;
+    min-height: 100vh;
+}
+
+.article-list-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 页面标题 */
+.article-list-header {
+    margin-bottom: 60px;
+}
+
+.article-list-title {
+    font-family: var(--font-family);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+.article-list-desc {
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: var(--color-gray);
+}
+
+/* 文章列表 */
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.article-list-item {
+    border-bottom: 1px solid var(--color-gray-lighter);
+}
+
+.article-list-link {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.article-list-link:hover {
+    opacity: 0.7;
+}
+
+/* 缩略图 */
+.article-list-thumb {
+    width: 180px;
+    height: 120px;
+    flex-shrink: 0;
+    background: var(--color-white-dim);
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.article-list-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article-list-thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-lighter);
+}
+
+/* 文章内容 */
+.article-list-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.article-list-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.article-list-date {
+    font-family: var(--font-family);
+    font-size: 13px;
+    color: var(--color-gray);
+}
+
+.article-list-tag {
+    font-family: var(--font-family);
+    font-size: 11px;
+    color: var(--color-gray-light);
+    padding: 2px 8px;
+    border: 1px solid var(--color-gray-lighter);
+    border-radius: 3px;
+}
+
+.article-list-name {
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.article-list-excerpt {
+    font-size: 14px;
+    color: var(--color-gray);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 分页 */
+.article-list-pagination {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.article-list-pagination .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    margin: 0 4px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    color: var(--color-gray);
+    text-decoration: none;
+    border: 1px solid var(--color-gray-lighter);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.article-list-pagination .page-numbers:hover {
+    border-color: var(--color-black);
+    color: var(--color-black);
+}
+
+.article-list-pagination .page-numbers.current {
+    background: var(--color-black);
+    border-color: var(--color-black);
+    color: var(--color-white);
+}
+
+/* 空状态 */
+.article-list-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    color: var(--color-gray-light);
+}
+
+.article-list-empty svg {
+    margin-bottom: 16px;
+}
+
+.article-list-empty p {
+    font-size: 16px;
+}
+
+/* ==================== 横屏模式 ==================== */
+@media (orientation: landscape) {
+    .article-list-container {
+        transform: translateX(-400px);
+    }
+}
+
+/* ==================== 响应式 ==================== */
+@media (max-width: 768px) {
+    .article-list-section {
+        padding: 60px 20px;
+    }
+
+    .article-list-title {
+        font-size: 32px;
+    }
+
+    .article-list-link {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .article-list-thumb {
+        width: 100%;
+        height: 180px;
+    }
+}

@@ -50,6 +50,7 @@ function blog_custom_enqueue_assets() {
         'loading'      => 'css/loading.css',
         'main-banner'  => 'css/main-banner.css',
         'article'      => 'css/article.css',
+        'article-list' => 'css/article-list.css',
         'footer'       => 'css/footer.css',
         'animations'   => 'css/animations.css',
         'side-nav'     => 'css/side-nav.css',
@@ -158,12 +159,36 @@ add_action('init', 'blog_custom_cleanup_head');
  * 覆盖页面模板 - 为首页和特定页面使用自定义模板
  */
 function blog_custom_template_include($template) {
-    if (is_front_page() || is_home() || is_page('main-blog') || is_page_template('template-main.php') || is_page_template('page-main-blog.php')) {
+    // 只在前台执行，后台管理页面不处理
+    if (is_admin()) {
+        return $template;
+    }
+
+    // 确保是主查询，避免影响其他查询
+    if (!is_main_query()) {
+        return $template;
+    }
+
+    // 获取当前请求的 slug
+    $request_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+    // 文章列表页模板 - 直接匹配 URL 或页面 slug
+    if ($request_uri === 'articles' || is_page('articles') || is_page_template('template-articles.php')) {
+        $custom_template = BLOG_CUSTOM_DIR . '/template-articles.php';
+        if (file_exists($custom_template)) {
+            return $custom_template;
+        }
+    }
+
+    // 主页模板 - 仅在真正的前台首页时使用
+    // 使用 is_front_page() 检测站点首页，is_page('home') 检测 home 页面
+    if ((is_front_page() && !is_paged()) || is_page('home') || is_page('main-blog') || is_page_template('template-main.php') || is_page_template('page-main-blog.php')) {
         $custom_template = BLOG_CUSTOM_DIR . '/template-main.php';
         if (file_exists($custom_template)) {
             return $custom_template;
         }
     }
+
     return $template;
 }
 add_filter('template_include', 'blog_custom_template_include', 99);
