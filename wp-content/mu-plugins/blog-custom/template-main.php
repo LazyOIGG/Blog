@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/loading.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/main-banner.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/article.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/section.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/footer.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/animations.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/responsive.css">
@@ -102,7 +103,7 @@
                         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                         <span>Home</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=articles'); ?>" class="mobile-nav-item">
+                    <a href="#articles" class="mobile-nav-item" data-section="articles">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                         <span>Articles</span>
                     </a>
@@ -212,7 +213,7 @@
                     <span class="nav-label">Home</span>
                     <span class="nav-tooltip">Home</span>
                 </a>
-                <a href="<?php echo home_url('/?section=articles'); ?>" class="nav-item">
+                <a href="#articles" class="nav-item" data-section="articles">
                     <div class="nav-icon">
                         <svg viewBox="0 0 24 24">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -490,6 +491,268 @@
                 </div>
             </div>
             <?php endif; ?>
+
+            <!-- View More 按钮 -->
+            <div class="section-view-more">
+                <a href="<?php echo home_url('/?section=articles'); ?>" class="view-more-btn">
+                    <span>VIEW ALL ARTICLES</span>
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Projects 区域 -->
+        <section class="projects-section" id="projects">
+            <div class="projects-container">
+                <div class="projects-header fade-in">
+                    <div class="section-header-content">
+                        <h2 class="section-title">PROJECTS</h2>
+                        <p class="section-subtitle">个人项目与开源贡献</p>
+                    </div>
+                    <a href="<?php echo home_url('/?section=projects'); ?>" class="view-more-btn">
+                        <span>VIEW ALL</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- 预设项目卡片 1 -->
+                    <div class="project-card fade-in">
+                        <div class="project-card-image">
+                            <div class="project-card-placeholder">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-card-tag">COMMING SOON</div>
+                            <h3 class="project-card-title">Blog Theme</h3>
+                            <p class="project-card-desc">工业科幻风格的个人博客主题，基于 WordPress 自定义开发。</p>
+                            <div class="project-card-footer">
+                                <span class="project-card-lang">
+                                    <span class="lang-dot php"></span>PHP
+                                </span>
+                                <span class="project-card-lang">
+                                    <span class="lang-dot css"></span>CSS
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 预设项目卡片 2 -->
+                    <div class="project-card fade-in">
+                        <div class="project-card-image">
+                            <div class="project-card-placeholder">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-card-tag">COMMING SOON</div>
+                            <h3 class="project-card-title">UI Component Library</h3>
+                            <p class="project-card-desc">面向未来的工业设计组件库，支持深色模式与动态主题。</p>
+                            <div class="project-card-footer">
+                                <span class="project-card-lang">
+                                    <span class="lang-dot js"></span>JavaScript
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 预设项目卡片 3 -->
+                    <div class="project-card fade-in">
+                        <div class="project-card-image">
+                            <div class="project-card-placeholder">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-card-tag">PLANNING</div>
+                            <h3 class="project-card-title">Open Source Tools</h3>
+                            <p class="project-card-desc">为开发者打造的效率工具集，提升开发体验与工作流程。</p>
+                            <div class="project-card-footer">
+                                <span class="project-card-lang">
+                                    <span class="lang-dot py"></span>Python
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projects-empty-hint fade-in">
+                    <span class="hint-line"></span>
+                    <span class="hint-text">更多项目开发中，敬请期待...</span>
+                    <span class="hint-line"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About 区域 -->
+        <section class="about-section" id="about">
+            <div class="about-container">
+                <div class="about-header fade-in">
+                    <div class="section-header-content">
+                        <h2 class="section-title">ABOUT</h2>
+                        <p class="section-subtitle">关于我</p>
+                    </div>
+                    <a href="<?php echo home_url('/?section=about'); ?>" class="view-more-btn">
+                        <span>VIEW MORE</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="about-content">
+                    <!-- 左侧头像区域 -->
+                    <div class="about-avatar-section fade-in">
+                        <div class="about-avatar">
+                            <img src="<?php echo content_url('/mu-plugins/blog-custom/static/images/avator.png'); ?>" alt="博主头像">
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">LazyOIGG</div>
+                                <div class="stat-label">GitHub Username</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">ncyoigg</div>
+                                <div class="stat-label">Blog Author</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧介绍区域 -->
+                    <div class="about-text-section fade-in">
+                        <div class="about-bio">
+                            <h3 class="about-bio-title">Hi, I'm NCYOIGG 👋</h3>
+                            <p class="about-bio-text">
+                                欢迎来到我的个人博客！我是一名热爱技术、追求创新的全栈开发者。
+                            </p>
+                            <p class="about-bio-text">
+                                我热衷于探索前后端技术的融合，喜欢用代码构建优雅的解决方案。
+                                从工业科幻风格的界面设计到高效的后端架构，我始终保持着对技术的热爱与好奇。
+                            </p>
+                            <p class="about-bio-text">
+                                在这里，我会分享我的开发笔记、项目实践以及对技术趋势的思考，
+                                希望能与更多开发者交流学习，共同成长。
+                            </p>
+                        </div>
+
+                        <div class="about-skills">
+                            <h4 class="about-skills-title">技术栈</h4>
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <span class="skill-name">SpringBoot</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Python</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Vue3</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">H5</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">PHP</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 70%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact 区域 -->
+        <section class="contact-section" id="contact">
+            <div class="contact-container">
+                <div class="contact-header fade-in">
+                    <div class="section-header-content">
+                        <h2 class="section-title">CONTACT</h2>
+                        <p class="section-subtitle">联系方式</p>
+                    </div>
+                </div>
+                <div class="contact-view-more">
+                    <a href="<?php echo home_url('/?section=contact'); ?>" class="view-more-btn">
+                        <span>VIEW MORE</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="contact-content fade-in">
+                    <div class="contact-cards">
+                        <!-- 邮箱卡片 -->
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg viewBox="0 0 24 24" width="32" height="32">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div class="contact-card-content">
+                                <div class="contact-card-label">Email</div>
+                                <div class="contact-card-value" data-email="ncyoigg@qq.com">ncyoigg@qq.com</div>
+                                <div class="contact-card-hint">点击复制邮箱地址</div>
+                            </div>
+                        </div>
+
+                        <!-- GitHub 卡片 -->
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg viewBox="0 0 24 24" width="32" height="32">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div class="contact-card-content">
+                                <div class="contact-card-label">GitHub</div>
+                                <a href="https://github.com/LazyOIGG" target="_blank" class="contact-card-value contact-card-link">LazyOIGG</a>
+                                <div class="contact-card-hint">查看我的开源项目</div>
+                            </div>
+                        </div>
+
+                        <!-- Bilibili 卡片 -->
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg viewBox="0 0 24 24" width="32" height="32">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M7 7l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M17 7l-3 3 3 3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="10" y1="13" x2="14" y2="13" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div class="contact-card-content">
+                                <div class="contact-card-label">Bilibili</div>
+                                <a href="https://space.bilibili.com/183373315" target="_blank" class="contact-card-value contact-card-link">NCYOIGG</a>
+                                <div class="contact-card-hint">关注我的动态</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-message">
+                        <p>欢迎通过以上方式与我取得联系，期待与你的交流！</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- 底部区域 -->

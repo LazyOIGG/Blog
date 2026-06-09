@@ -1,7 +1,7 @@
 <?php
 /**
- * Template Name: Articles
- * Description: 文章列表页
+ * Template Name: About
+ * Description: 关于页面
  */
 ?>
 <!DOCTYPE html>
@@ -9,16 +9,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo get_bloginfo("name"); ?> - Articles</title>
+    <title><?php echo get_bloginfo("name"); ?> - About</title>
     <!-- CSS 模块 -->
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/variables.css">
-    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/article-list.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/section.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/footer.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body, html { margin: 0 !important; padding: 0 !important; }
-        /* 确保页面有最小高度，底部固定在屏幕底部 */
         body {
             display: flex;
             flex-direction: column;
@@ -29,8 +28,13 @@
             display: flex;
             flex-direction: column;
         }
-        .article-list-section {
+        .about-section {
             flex: 1;
+        }
+        .about-section .about-header {
+            text-align: left;
+            margin-bottom: 80px;
+            padding-top: 60px;
         }
     </style>
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/side-nav.css">
@@ -71,7 +75,7 @@
                         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                         <span>Home</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=articles'); ?>" class="mobile-nav-item active">
+                    <a href="<?php echo home_url('/?section=articles'); ?>" class="mobile-nav-item">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                         <span>Articles</span>
                     </a>
@@ -79,7 +83,7 @@
                         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                         <span>Projects</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=about'); ?>" class="mobile-nav-item">
+                    <a href="<?php echo home_url('/?section=about'); ?>" class="mobile-nav-item active">
                         <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         <span>About</span>
                     </a>
@@ -181,7 +185,7 @@
                         <span class="nav-label">Home</span>
                         <span class="nav-tooltip">Home</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=articles'); ?>" class="nav-item active">
+                    <a href="<?php echo home_url('/?section=articles'); ?>" class="nav-item">
                         <div class="nav-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -204,7 +208,7 @@
                         <span class="nav-label">Projects</span>
                         <span class="nav-tooltip">Projects</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=about'); ?>" class="nav-item">
+                    <a href="<?php echo home_url('/?section=about'); ?>" class="nav-item active">
                         <div class="nav-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -244,7 +248,6 @@
                     </a>
                     <div class="nav-item nav-dark-mode" data-action="darkMode">
                         <div class="nav-icon">
-                            <!-- 关闭状态图标（太阳） -->
                             <svg class="nav-dark-icon off" viewBox="0 0 24 24">
                                 <circle cx="12" cy="12" r="5"/>
                                 <line x1="12" y1="1" x2="12" y2="3"/>
@@ -256,13 +259,11 @@
                                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
                                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
                             </svg>
-                            <!-- 跟随系统图标（自动） -->
                             <svg class="nav-dark-icon system" viewBox="0 0 24 24" style="display:none">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                 <line x1="8" y1="21" x2="16" y2="21"/>
                                 <line x1="12" y1="17" x2="12" y2="21"/>
                             </svg>
-                            <!-- 开启状态图标（月亮） -->
                             <svg class="nav-dark-icon on" viewBox="0 0 24 24" style="display:none">
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                             </svg>
@@ -354,82 +355,76 @@
             </div>
         </nav>
 
-        <!-- 文章列表区域 -->
-        <section class="article-list-section">
-            <div class="article-list-container">
-                <div class="article-list-header">
-                    <h1 class="article-list-title">Articles</h1>
-                    <p class="article-list-desc">所有文章</p>
+        <!-- About 区域 -->
+        <section class="about-section" id="about">
+            <div class="about-container">
+                <div class="about-header">
+                    <h2 class="section-title">ABOUT</h2>
+                    <p class="section-subtitle">关于我</p>
                 </div>
 
-                <div class="article-list">
-                    <?php
-                    // 分页参数
-                    $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-                    $args = array(
-                        'posts_per_page' => 10,
-                        'paged' => $paged,
-                        'post_status' => 'publish'
-                    );
-                    $query = new WP_Query($args);
-
-                    if ($query->have_posts()) :
-                        while ($query->have_posts()) : $query->the_post();
-                    ?>
-                    <article class="article-list-item">
-                        <a href="<?php the_permalink(); ?>" class="article-list-link">
-                            <?php if (has_post_thumbnail()) : ?>
-                            <div class="article-list-thumb">
-                                <?php the_post_thumbnail('medium_large', array('class' => 'article-list-img')); ?>
+                <div class="about-content">
+                    <!-- 左侧头像区域 -->
+                    <div class="about-avatar-section">
+                        <div class="about-avatar">
+                            <img src="<?php echo content_url('/mu-plugins/blog-custom/static/images/avator.png'); ?>" alt="博主头像">
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">LazyOIGG</div>
+                                <div class="stat-label">GitHub Username</div>
                             </div>
-                            <?php endif; ?>
-                            <div class="article-list-content">
-                                <div class="article-list-meta">
-                                    <span class="article-list-date"><?php echo get_the_date("Y.m.d"); ?></span>
-                                    <?php
-                                    $tags = get_the_tags();
-                                    if ($tags) {
-                                        foreach (array_slice($tags, 0, 2) as $tag) {
-                                            echo '<span class="article-list-tag">' . esc_html($tag->name) . '</span>';
-                                        }
-                                    }
-                                    ?>
+                            <div class="stat-item">
+                                <div class="stat-value">ncyoigg</div>
+                                <div class="stat-label">Blog Author</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧介绍区域 -->
+                    <div class="about-text-section">
+                        <div class="about-bio">
+                            <h3 class="about-bio-title">Hi, I'm NCYOIGG 👋</h3>
+                            <p class="about-bio-text">
+                                欢迎来到我的个人博客！我是一名热爱技术、追求创新的全栈开发者。
+                            </p>
+                            <p class="about-bio-text">
+                                我热衷于探索前后端技术的融合，喜欢用代码构建优雅的解决方案。
+                                从工业科幻风格的界面设计到高效的后端架构，我始终保持着对技术的热爱与好奇。
+                            </p>
+                            <p class="about-bio-text">
+                                在这里，我会分享我的开发笔记、项目实践以及对技术趋势的思考，
+                                希望能与更多开发者交流学习，共同成长。
+                            </p>
+                        </div>
+
+                        <div class="about-skills">
+                            <h4 class="about-skills-title">技术栈</h4>
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <span class="skill-name">SpringBoot</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
                                 </div>
-                                <h2 class="article-list-name"><?php the_title(); ?></h2>
-                                <p class="article-list-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 30); ?></p>
+                                <div class="skill-item">
+                                    <span class="skill-name">Python</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Vue3</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">H5</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">PHP</span>
+                                    <div class="skill-bar"><div class="skill-fill" style="width: 70%"></div></div>
+                                </div>
                             </div>
-                        </a>
-                    </article>
-                    <?php
-                        endwhile;
-                    ?>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- 分页 -->
-                <div class="article-list-pagination">
-                    <?php
-                    echo paginate_links(array(
-                        'prev_text' => '&laquo;',
-                        'next_text' => '&raquo;',
-                        'total' => $query->max_num_pages
-                    ));
-                    ?>
-                </div>
-
-                <?php
-                    else :
-                ?>
-                <div class="article-list-empty">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        <polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
-                    <p>暂无文章</p>
-                </div>
-                <?php
-                    endif;
-                    wp_reset_postdata();
-                ?>
             </div>
         </section>
 

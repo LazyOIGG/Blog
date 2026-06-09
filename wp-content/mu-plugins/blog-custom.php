@@ -51,6 +51,7 @@ function blog_custom_enqueue_assets() {
         'main-banner'  => 'css/main-banner.css',
         'article'      => 'css/article.css',
         'article-list' => 'css/article-list.css',
+        'section'      => 'css/section.css',
         'footer'       => 'css/footer.css',
         'animations'   => 'css/animations.css',
         'side-nav'     => 'css/side-nav.css',
@@ -171,6 +172,33 @@ function blog_custom_template_redirect() {
     // 文章列表页模板 - 支持查询参数、URL slug、页面 slug
     if ($page_param === 'articles' || $request_uri === 'articles' || is_page('articles') || is_page_template('template-articles.php')) {
         $custom_template = BLOG_CUSTOM_DIR . '/template-articles.php';
+        if (file_exists($custom_template)) {
+            include($custom_template);
+            exit;
+        }
+    }
+
+    // Projects 页面模板
+    if ($page_param === 'projects' || $request_uri === 'projects' || is_page('projects') || is_page_template('template-projects.php')) {
+        $custom_template = BLOG_CUSTOM_DIR . '/template-projects.php';
+        if (file_exists($custom_template)) {
+            include($custom_template);
+            exit;
+        }
+    }
+
+    // About 页面模板
+    if ($page_param === 'about' || $request_uri === 'about' || is_page('about') || is_page_template('template-about.php')) {
+        $custom_template = BLOG_CUSTOM_DIR . '/template-about.php';
+        if (file_exists($custom_template)) {
+            include($custom_template);
+            exit;
+        }
+    }
+
+    // Contact 页面模板
+    if ($page_param === 'contact' || $request_uri === 'contact' || is_page('contact') || is_page_template('template-contact.php')) {
+        $custom_template = BLOG_CUSTOM_DIR . '/template-contact.php';
         if (file_exists($custom_template)) {
             include($custom_template);
             exit;

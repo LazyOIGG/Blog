@@ -1,7 +1,7 @@
 <?php
 /**
- * Template Name: Articles
- * Description: 文章列表页
+ * Template Name: Projects
+ * Description: 项目展示页
  */
 ?>
 <!DOCTYPE html>
@@ -9,16 +9,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo get_bloginfo("name"); ?> - Articles</title>
+    <title><?php echo get_bloginfo("name"); ?> - Projects</title>
     <!-- CSS 模块 -->
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/variables.css">
-    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/article-list.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/section.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/footer.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body, html { margin: 0 !important; padding: 0 !important; }
-        /* 确保页面有最小高度，底部固定在屏幕底部 */
         body {
             display: flex;
             flex-direction: column;
@@ -29,8 +28,13 @@
             display: flex;
             flex-direction: column;
         }
-        .article-list-section {
+        .projects-section {
             flex: 1;
+        }
+        .projects-section .projects-header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-top: 60px;
         }
     </style>
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/side-nav.css">
@@ -71,11 +75,11 @@
                         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                         <span>Home</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=articles'); ?>" class="mobile-nav-item active">
+                    <a href="<?php echo home_url('/?section=articles'); ?>" class="mobile-nav-item">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                         <span>Articles</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=projects'); ?>" class="mobile-nav-item">
+                    <a href="<?php echo home_url('/?section=projects'); ?>" class="mobile-nav-item active">
                         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                         <span>Projects</span>
                     </a>
@@ -181,7 +185,7 @@
                         <span class="nav-label">Home</span>
                         <span class="nav-tooltip">Home</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=articles'); ?>" class="nav-item active">
+                    <a href="<?php echo home_url('/?section=articles'); ?>" class="nav-item">
                         <div class="nav-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -193,7 +197,7 @@
                         <span class="nav-label">Articles</span>
                         <span class="nav-tooltip">Articles</span>
                     </a>
-                    <a href="<?php echo home_url('/?section=projects'); ?>" class="nav-item">
+                    <a href="<?php echo home_url('/?section=projects'); ?>" class="nav-item active">
                         <div class="nav-icon">
                             <svg viewBox="0 0 24 24">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
@@ -244,7 +248,6 @@
                     </a>
                     <div class="nav-item nav-dark-mode" data-action="darkMode">
                         <div class="nav-icon">
-                            <!-- 关闭状态图标（太阳） -->
                             <svg class="nav-dark-icon off" viewBox="0 0 24 24">
                                 <circle cx="12" cy="12" r="5"/>
                                 <line x1="12" y1="1" x2="12" y2="3"/>
@@ -256,13 +259,11 @@
                                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
                                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
                             </svg>
-                            <!-- 跟随系统图标（自动） -->
                             <svg class="nav-dark-icon system" viewBox="0 0 24 24" style="display:none">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                 <line x1="8" y1="21" x2="16" y2="21"/>
                                 <line x1="12" y1="17" x2="12" y2="21"/>
                             </svg>
-                            <!-- 开启状态图标（月亮） -->
                             <svg class="nav-dark-icon on" viewBox="0 0 24 24" style="display:none">
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                             </svg>
@@ -354,82 +355,92 @@
             </div>
         </nav>
 
-        <!-- 文章列表区域 -->
-        <section class="article-list-section">
-            <div class="article-list-container">
-                <div class="article-list-header">
-                    <h1 class="article-list-title">Articles</h1>
-                    <p class="article-list-desc">所有文章</p>
+        <!-- Projects 区域 -->
+        <section class="projects-section" id="projects">
+            <div class="projects-container">
+                <div class="projects-header">
+                    <h2 class="section-title">PROJECTS</h2>
+                    <p class="section-subtitle">个人项目与开源贡献</p>
                 </div>
 
-                <div class="article-list">
-                    <?php
-                    // 分页参数
-                    $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-                    $args = array(
-                        'posts_per_page' => 10,
-                        'paged' => $paged,
-                        'post_status' => 'publish'
-                    );
-                    $query = new WP_Query($args);
-
-                    if ($query->have_posts()) :
-                        while ($query->have_posts()) : $query->the_post();
-                    ?>
-                    <article class="article-list-item">
-                        <a href="<?php the_permalink(); ?>" class="article-list-link">
-                            <?php if (has_post_thumbnail()) : ?>
-                            <div class="article-list-thumb">
-                                <?php the_post_thumbnail('medium_large', array('class' => 'article-list-img')); ?>
+                <div class="projects-grid">
+                    <!-- 预设项目卡片 1 -->
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <div class="project-card-placeholder">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
                             </div>
-                            <?php endif; ?>
-                            <div class="article-list-content">
-                                <div class="article-list-meta">
-                                    <span class="article-list-date"><?php echo get_the_date("Y.m.d"); ?></span>
-                                    <?php
-                                    $tags = get_the_tags();
-                                    if ($tags) {
-                                        foreach (array_slice($tags, 0, 2) as $tag) {
-                                            echo '<span class="article-list-tag">' . esc_html($tag->name) . '</span>';
-                                        }
-                                    }
-                                    ?>
-                                </div>
-                                <h2 class="article-list-name"><?php the_title(); ?></h2>
-                                <p class="article-list-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 30); ?></p>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-card-tag">COMMING SOON</div>
+                            <h3 class="project-card-title">Blog Theme</h3>
+                            <p class="project-card-desc">工业科幻风格的个人博客主题，基于 WordPress 自定义开发。</p>
+                            <div class="project-card-footer">
+                                <span class="project-card-lang">
+                                    <span class="lang-dot php"></span>PHP
+                                </span>
+                                <span class="project-card-lang">
+                                    <span class="lang-dot css"></span>CSS
+                                </span>
                             </div>
-                        </a>
-                    </article>
-                    <?php
-                        endwhile;
-                    ?>
+                        </div>
+                    </div>
+
+                    <!-- 预设项目卡片 2 -->
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <div class="project-card-placeholder">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-card-tag">COMMING SOON</div>
+                            <h3 class="project-card-title">UI Component Library</h3>
+                            <p class="project-card-desc">面向未来的工业设计组件库，支持深色模式与动态主题。</p>
+                            <div class="project-card-footer">
+                                <span class="project-card-lang">
+                                    <span class="lang-dot js"></span>JavaScript
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 预设项目卡片 3 -->
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <div class="project-card-placeholder">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <div class="project-card-tag">PLANNING</div>
+                            <h3 class="project-card-title">Open Source Tools</h3>
+                            <p class="project-card-desc">为开发者打造的效率工具集，提升开发体验与工作流程。</p>
+                            <div class="project-card-footer">
+                                <span class="project-card-lang">
+                                    <span class="lang-dot py"></span>Python
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- 分页 -->
-                <div class="article-list-pagination">
-                    <?php
-                    echo paginate_links(array(
-                        'prev_text' => '&laquo;',
-                        'next_text' => '&raquo;',
-                        'total' => $query->max_num_pages
-                    ));
-                    ?>
+                <div class="projects-empty-hint">
+                    <span class="hint-line"></span>
+                    <span class="hint-text">更多项目开发中，敬请期待...</span>
+                    <span class="hint-line"></span>
                 </div>
-
-                <?php
-                    else :
-                ?>
-                <div class="article-list-empty">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        <polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
-                    <p>暂无文章</p>
-                </div>
-                <?php
-                    endif;
-                    wp_reset_postdata();
-                ?>
             </div>
         </section>
 

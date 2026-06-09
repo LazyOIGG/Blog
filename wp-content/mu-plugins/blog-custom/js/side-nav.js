@@ -134,20 +134,77 @@ class SideNav {
     setActiveItem() {
         // Set based on current scroll position
         const sections = document.querySelectorAll('section[id]');
-        const navItems = this.sidebar.querySelectorAll('.nav-item');
+        const navItems = this.sidebar.querySelectorAll('.nav-item[data-section]');
+        const mainContent = document.querySelector('.main-content');
 
+        if (!mainContent || sections.length === 0) return;
+
+        // 使用滚动事件来检测当前区域
+        let ticking = false;
+
+        const updateActiveSection = () => {
+            const scrollTop = mainContent.scrollTop || window.scrollY;
+            const windowHeight = window.innerHeight;
+            const scrollMiddle = scrollTop + windowHeight / 2;
+
+            let currentSection = null;
+            let minDistance = Infinity;
+
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = scrollTop + rect.top;
+                const sectionMiddle = sectionTop + rect.height / 2;
+                const distance = Math.abs(scrollMiddle - sectionMiddle);
+
+                // 检查区域是否在视口内
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        currentSection = section.id;
+                    }
+                }
+            });
+
+            if (currentSection) {
+                navItems.forEach(item => {
+                    const isActive = item.dataset.section === currentSection;
+                    item.classList.toggle('active', isActive);
+                });
+            }
+        };
+
+        // 使用 IntersectionObserver 作为备份
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.id;
                     navItems.forEach(item => {
-                        item.classList.toggle('active', item.dataset.section === id);
+                        if (item.dataset.section === id) {
+                            item.classList.add('active');
+                        }
                     });
                 }
             });
-        }, { threshold: 0.3 });
+        }, {
+            threshold: 0,
+            rootMargin: '-20% 0px -20% 0px'
+        });
 
         sections.forEach(section => observer.observe(section));
+
+        // 滚动事件监听
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateActiveSection();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // 初始设置
+        updateActiveSection();
     }
 
     handleToggle(toggle) {

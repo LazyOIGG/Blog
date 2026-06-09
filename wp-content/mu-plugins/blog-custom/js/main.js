@@ -1,18 +1,26 @@
 // ==================== 工业科幻博客 - 主脚本 ====================
 
 // DOM 元素
-const loadingScreen = document.getElementById('loadingScreen');
-const progressBar = document.getElementById('progressBar');
-const progressText = document.getElementById('progressText');
-const progressDot = document.getElementById('progressDot');
-const progressContainer = document.getElementById('progressContainer');
-const progressLabel = document.getElementById('progressLabel');
-const wipeMask = document.getElementById('wipeMask');
-const mainContent = document.getElementById('mainContent');
+let loadingScreen, progressBar, progressText, progressDot, progressContainer, progressLabel, wipeMask, mainContent;
+
+// 初始化 DOM 元素
+function initDOMElements() {
+    loadingScreen = document.getElementById('loadingScreen');
+    progressBar = document.getElementById('progressBar');
+    progressText = document.getElementById('progressText');
+    progressDot = document.getElementById('progressDot');
+    progressContainer = document.getElementById('progressContainer');
+    progressLabel = document.getElementById('progressLabel');
+    wipeMask = document.getElementById('wipeMask');
+    mainContent = document.getElementById('mainContent');
+}
 
 // ==================== 立即检查：非首次访问时立即隐藏加载界面 ====================
 // 在 DOM 元素获取后立即执行，避免短暂显示加载背景
 (function() {
+    // 初始化 DOM 元素
+    initDOMElements();
+
     const hasVisited = sessionStorage.getItem('blog_loading_shown');
     if (hasVisited) {
         // 立即隐藏加载界面和进度条
@@ -98,8 +106,10 @@ class LoadingSequence {
         if (progressLabel) progressLabel.style.display = 'none';
 
         // 显示擦除遮罩
-        wipeMask.style.display = 'block';
-        wipeMask.style.opacity = '1';
+        if (wipeMask) {
+            wipeMask.style.display = 'block';
+            wipeMask.style.opacity = '1';
+        }
 
         // 阶段1：雨刮动画（从左到右扩展）
         const wipeDuration = 1000; // 1秒雨刮
@@ -111,7 +121,7 @@ class LoadingSequence {
 
             // 使用缓动函数让动画更自然
             const eased = this.easeInOutCubic(progress);
-            wipeMask.style.width = `${eased * 100}%`;
+            if (wipeMask) wipeMask.style.width = `${eased * 100}%`;
 
             if (progress < 1) {
                 requestAnimationFrame(animateWipe);
@@ -130,8 +140,12 @@ class LoadingSequence {
         const startTime = performance.now();
 
         // 在淡化开始时就显示主内容（在黄色遮罩下面）
-        loadingScreen.style.display = 'none';
-        mainContent.classList.add('visible');
+        if (loadingScreen) loadingScreen.style.display = 'none';
+        if (mainContent) {
+            mainContent.classList.add('visible');
+            mainContent.style.opacity = '1';
+            mainContent.style.visibility = 'visible';
+        }
 
         const animateFade = (currentTime) => {
             const elapsed = currentTime - startTime;
@@ -139,7 +153,7 @@ class LoadingSequence {
 
             // 使用缓动函数让动画更自然
             const eased = this.easeInOutCubic(progress);
-            wipeMask.style.opacity = `${1 - eased}`;
+            if (wipeMask) wipeMask.style.opacity = `${1 - eased}`;
 
             if (progress < 1) {
                 requestAnimationFrame(animateFade);
@@ -153,10 +167,25 @@ class LoadingSequence {
 
     onFadeComplete() {
         // 隐藏黄色遮罩
-        wipeMask.style.display = 'none';
+        if (wipeMask) wipeMask.style.display = 'none';
 
         // 开始页面元素浮现动画
         this.startRevealAnimations();
+
+        // 立即显示所有 fade-in 元素（避免空白）
+        setTimeout(() => {
+            this.revealAllFadeInElements();
+        }, 300);
+
+        // 处理锚点跳转（从其他页面跳转过来时）
+        if (window.location.hash) {
+            setTimeout(() => {
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 500);
+        }
     }
 
     easeInOutCubic(t) {
@@ -185,7 +214,7 @@ class LoadingSequence {
         // 初始化滚动动画
         setTimeout(() => {
             this.initScrollAnimations();
-        }, 1500);
+        }, 500); // 减少延迟到 500ms
     }
 
     initScrollAnimations() {
@@ -201,13 +230,30 @@ class LoadingSequence {
             },
             {
                 threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+                rootMargin: '50px 0px -50px 0px' // 扩大检测范围
             }
         );
 
         // 观察需要动画的元素
         document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
             observer.observe(el);
+        });
+
+        // 检查当前视口中的元素（处理锚点跳转的情况）
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in:not(.revealed), .slide-in-left:not(.revealed), .slide-in-right:not(.revealed)').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('revealed');
+                }
+            });
+        }, 100);
+    }
+
+    revealAllFadeInElements() {
+        // 立即显示所有 fade-in 元素，避免从其他页面返回时出现空白
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            el.classList.add('revealed');
         });
     }
 }
@@ -378,6 +424,9 @@ class App {
      * 跳过加载动画，直接显示内容
      */
     skipLoading() {
+        // 重新获取 DOM 元素（确保元素存在）
+        initDOMElements();
+
         // 隐藏加载界面
         if (loadingScreen) loadingScreen.style.display = 'none';
         if (progressContainer) progressContainer.style.display = 'none';
@@ -386,12 +435,67 @@ class App {
         if (progressLabel) progressLabel.style.display = 'none';
 
         // 直接显示主内容
-        mainContent.classList.add('visible');
+        if (mainContent) {
+            mainContent.classList.add('visible');
+            mainContent.style.opacity = '1';
+            mainContent.style.visibility = 'visible';
+        }
 
         // 直接显示所有需要浮现的元素
         const revealElements = [sidebarNav, bannerTag, bannerLine1, bannerLine2, bannerLine3, bannerDesc];
         revealElements.forEach(element => {
             if (element) element.classList.add('revealed');
+        });
+
+        // 立即显示所有 fade-in 元素（避免空白）
+        this.revealAllFadeInElements();
+
+        // 初始化滚动动画（非首次访问时立即初始化）
+        this.initScrollAnimations();
+
+        // 处理锚点跳转（从其他页面跳转过来时）
+        if (window.location.hash) {
+            setTimeout(() => {
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 200);
+        }
+    }
+
+    /**
+     * 立即显示所有 fade-in 元素
+     */
+    revealAllFadeInElements() {
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            el.classList.add('revealed');
+        });
+    }
+
+    /**
+     * 初始化滚动动画
+     */
+    initScrollAnimations() {
+        // 创建 Intersection Observer
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '50px 0px -50px 0px'
+            }
+        );
+
+        // 观察需要动画的元素
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
         });
     }
 
