@@ -408,6 +408,18 @@
 
         <!-- 文章详情区域 -->
         <section class="article-section" id="articles">
+            <div class="article-section-header fade-in">
+                <div class="section-header-content">
+                    <h2 class="section-title">ARTICLES</h2>
+                    <p class="section-subtitle">最新文章</p>
+                </div>
+                <a href="<?php echo home_url('/?section=articles'); ?>" class="view-more-btn">
+                    <span>VIEW ALL</span>
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </a>
+            </div>
             <?php
             // 获取最新文章
             $args = array(

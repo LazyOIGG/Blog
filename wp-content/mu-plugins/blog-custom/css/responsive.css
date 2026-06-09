@@ -149,8 +149,8 @@
     /* Hero 内容调整 */
     .main-banner-content {
         max-width: 100%;
-        margin-left: 0;
-        margin-top: -15%;
+        margin-left: -5%;
+        margin-top: -85%;
         padding: 0 20px;
     }
 
@@ -200,8 +200,8 @@
 
     .main-banner-content {
         max-width: 500px;
-        margin-left: 10%;
-        margin-top: -18%;
+        margin-left: 0%;
+        margin-top: -27%;
     }
 
     .article-container {
@@ -213,8 +213,8 @@
 @media (orientation: landscape) and (min-width: 1400px) {
     .main-banner-content {
         max-width: 600px;
-        margin-left: 12%;
-        margin-top: -20%;
+        margin-left: 2%;
+        margin-top: -27%;
     }
 
     .main-banner-title {
@@ -226,8 +226,8 @@
 @media (orientation: landscape) and (max-width: 1200px) {
     .main-banner-content {
         max-width: 450px;
-        margin-left: 8%;
-        margin-top: -16%;
+        margin-left: -2%;
+        margin-top: -20%;
     }
 
     .main-banner {
