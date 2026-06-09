@@ -55,6 +55,7 @@ function blog_custom_enqueue_assets() {
         'animations'   => 'css/animations.css',
         'side-nav'     => 'css/side-nav.css',
         'mobile-nav'   => 'css/mobile-nav.css',
+        'dark-mode'    => 'css/dark-mode.css',
         'responsive'   => 'css/responsive.css',
     );
 
@@ -156,42 +157,36 @@ function blog_custom_cleanup_head() {
 add_action('init', 'blog_custom_cleanup_head');
 
 /**
- * 覆盖页面模板 - 为首页和特定页面使用自定义模板
+ * 覆盖页面模板 - 使用 template_redirect 在 WordPress 判定 404 之前拦截
  */
-function blog_custom_template_include($template) {
-    // 只在前台执行，后台管理页面不处理
+function blog_custom_template_redirect() {
+    // 只在前台执行
     if (is_admin()) {
-        return $template;
+        return;
     }
 
-    // 确保是主查询，避免影响其他查询
-    if (!is_main_query()) {
-        return $template;
-    }
-
-    // 获取当前请求的 slug
     $request_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    $page_param = isset($_GET['section']) ? sanitize_text_field($_GET['section']) : '';
 
-    // 文章列表页模板 - 直接匹配 URL 或页面 slug
-    if ($request_uri === 'articles' || is_page('articles') || is_page_template('template-articles.php')) {
+    // 文章列表页模板 - 支持查询参数、URL slug、页面 slug
+    if ($page_param === 'articles' || $request_uri === 'articles' || is_page('articles') || is_page_template('template-articles.php')) {
         $custom_template = BLOG_CUSTOM_DIR . '/template-articles.php';
         if (file_exists($custom_template)) {
-            return $custom_template;
+            include($custom_template);
+            exit;
         }
     }
 
     // 主页模板 - 仅在真正的前台首页时使用
-    // 使用 is_front_page() 检测站点首页，is_page('home') 检测 home 页面
     if ((is_front_page() && !is_paged()) || is_page('home') || is_page('main-blog') || is_page_template('template-main.php') || is_page_template('page-main-blog.php')) {
         $custom_template = BLOG_CUSTOM_DIR . '/template-main.php';
         if (file_exists($custom_template)) {
-            return $custom_template;
+            include($custom_template);
+            exit;
         }
     }
-
-    return $template;
 }
-add_filter('template_include', 'blog_custom_template_include', 99);
+add_action('template_redirect', 'blog_custom_template_redirect', 1);
 
 /**
  * 注册编辑器样式
