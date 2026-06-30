@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/side-nav.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/mobile-nav.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/dark-mode.css">
+    <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/secret-link.css">
 </head>
 <body>
     <!-- 立即检查：非首次访问时隐藏加载界面，避免闪烁 -->
@@ -620,12 +621,19 @@
                         <h2 class="section-title">ABOUT</h2>
                         <p class="section-subtitle">关于我</p>
                     </div>
-                    <a href="<?php echo home_url('/?section=about'); ?>" class="view-more-btn">
-                        <span>VIEW MORE</span>
-                        <svg viewBox="0 0 24 24" width="16" height="16">
-                            <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </a>
+                    <div class="about-actions">
+                        <a href="<?php echo home_url('/?section=about'); ?>" class="view-more-btn" id="aboutViewMoreLink">
+                            <span>VIEW MORE</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </a>
+                        <button class="secret-heart-trigger" id="secretHeartTrigger" type="button" aria-label="hidden signal" data-about-url="<?php echo home_url('/?section=about'); ?>" data-secret-url="<?php echo home_url('/?section=secret'); ?>">
+                            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+                                <path d="M12 20s-6.5-3.9-9-8.3C.8 7.8 3.1 4 6.7 4c2 0 3.4 1.1 4.2 2.3C11.7 5.1 13.1 4 15.1 4c3.6 0 5.9 3.8 3.7 7.7C16.5 16.1 12 20 12 20z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="about-content">
@@ -779,5 +787,6 @@
     <script src="<?php echo content_url("/mu-plugins/blog-custom/js"); ?>/main.js"></script>
     <script src="<?php echo content_url("/mu-plugins/blog-custom/js"); ?>/side-nav.js"></script>
     <script src="<?php echo content_url("/mu-plugins/blog-custom/js"); ?>/mobile-nav.js"></script>
+    <script src="<?php echo content_url("/mu-plugins/blog-custom/js"); ?>/secret-link.js"></script>
 </body>
 </html>

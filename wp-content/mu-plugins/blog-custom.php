@@ -57,6 +57,7 @@ function blog_custom_enqueue_assets() {
         'side-nav'     => 'css/side-nav.css',
         'mobile-nav'   => 'css/mobile-nav.css',
         'dark-mode'    => 'css/dark-mode.css',
+        'secret-link'  => 'css/secret-link.css',
         'responsive'   => 'css/responsive.css',
     );
 
@@ -89,6 +90,14 @@ function blog_custom_enqueue_assets() {
     wp_enqueue_script(
         'blog-custom-mobile-nav',
         BLOG_CUSTOM_URL . '/js/mobile-nav.js',
+        array(),
+        BLOG_CUSTOM_VERSION,
+        true
+    );
+
+    wp_enqueue_script(
+        'blog-custom-secret-link',
+        BLOG_CUSTOM_URL . '/js/secret-link.js',
         array(),
         BLOG_CUSTOM_VERSION,
         true
@@ -199,6 +208,15 @@ function blog_custom_template_redirect() {
     // Contact 页面模板
     if ($page_param === 'contact' || $request_uri === 'contact' || is_page('contact') || is_page_template('template-contact.php')) {
         $custom_template = BLOG_CUSTOM_DIR . '/template-contact.php';
+        if (file_exists($custom_template)) {
+            include($custom_template);
+            exit;
+        }
+    }
+
+    // 隐藏连接演示页面
+    if ($page_param === 'secret' || $request_uri === 'secret' || is_page('secret') || is_page_template('template-secret-tcp.php')) {
+        $custom_template = BLOG_CUSTOM_DIR . '/template-secret-tcp.php';
         if (file_exists($custom_template)) {
             include($custom_template);
             exit;
