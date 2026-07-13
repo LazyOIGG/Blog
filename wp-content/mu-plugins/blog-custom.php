@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Blog Custom Content
  * Description: 从 Blog 主题迁移的自定义内容，包含页面模板、样式和脚本。
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: ncyoi
  */
 
@@ -10,9 +10,87 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('BLOG_CUSTOM_VERSION', '1.0.0');
+define('BLOG_CUSTOM_VERSION', '1.0.1');
 define('BLOG_CUSTOM_DIR', plugin_dir_path(__FILE__) . 'blog-custom');
 define('BLOG_CUSTOM_URL', plugin_dir_url(__FILE__) . 'blog-custom');
+
+function blog_custom_get_site_icon_url($size = 512) {
+    $available_sizes = array(16, 32, 180, 192, 512);
+    $size = (int) $size;
+
+    if (!in_array($size, $available_sizes, true)) {
+        $size = 512;
+    }
+
+    return BLOG_CUSTOM_URL . '/static/images/site-icons/site-icon-' . $size . '.png';
+}
+
+function blog_custom_output_site_icon_links() {
+    $icon_16 = esc_url(blog_custom_get_site_icon_url(16));
+    $icon_32 = esc_url(blog_custom_get_site_icon_url(32));
+    $icon_180 = esc_url(blog_custom_get_site_icon_url(180));
+    $icon_192 = esc_url(blog_custom_get_site_icon_url(192));
+    $icon_512 = esc_url(blog_custom_get_site_icon_url(512));
+
+    echo '<link rel="icon" href="' . $icon_16 . '" sizes="16x16" type="image/png">' . "\n";
+    echo '<link rel="icon" href="' . $icon_32 . '" sizes="32x32" type="image/png">' . "\n";
+    echo '<link rel="apple-touch-icon" href="' . $icon_180 . '" sizes="180x180">' . "\n";
+    echo '<link rel="icon" href="' . $icon_192 . '" sizes="192x192" type="image/png">' . "\n";
+    echo '<link rel="icon" href="' . $icon_512 . '" sizes="512x512" type="image/png">' . "\n";
+}
+
+function blog_custom_disable_default_site_icons() {
+    remove_action('wp_head', 'wp_site_icon', 99);
+    remove_action('admin_head', 'wp_site_icon', 99);
+    remove_action('login_head', 'wp_site_icon', 99);
+}
+add_action('init', 'blog_custom_disable_default_site_icons');
+
+add_action('wp_head', 'blog_custom_output_site_icon_links', 2);
+add_action('admin_head', 'blog_custom_output_site_icon_links', 2);
+add_action('login_head', 'blog_custom_output_site_icon_links', 2);
+
+function blog_custom_login_branding() {
+    $icon_url = esc_url(blog_custom_get_site_icon_url(512));
+
+    echo '<style id="blog-custom-login-branding">'
+        . '.login h1 a {'
+        . 'background-image: url(' . $icon_url . ');'
+        . 'background-position: center;'
+        . 'background-size: 104px 104px;'
+        . 'height: 112px;'
+        . 'width: 100%;'
+        . '}'
+        . '</style>';
+}
+add_action('login_head', 'blog_custom_login_branding', 20);
+
+function blog_custom_login_logo_url() {
+    return home_url('/');
+}
+add_filter('login_headerurl', 'blog_custom_login_logo_url');
+
+function blog_custom_login_logo_text() {
+    return get_bloginfo('name');
+}
+add_filter('login_headertext', 'blog_custom_login_logo_text');
+
+function blog_custom_admin_branding() {
+    $icon_url = esc_url(blog_custom_get_site_icon_url(32));
+
+    echo '<style id="blog-custom-admin-branding">'
+        . '#wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon {'
+        . 'width: 20px;'
+        . 'height: 32px;'
+        . 'margin: 0 6px;'
+        . 'background: url(' . $icon_url . ') center / 20px 20px no-repeat;'
+        . '}'
+        . '#wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon::before {'
+        . 'content: none;'
+        . '}'
+        . '</style>';
+}
+add_action('admin_head', 'blog_custom_admin_branding', 20);
 
 /**
  * 注册侧边栏

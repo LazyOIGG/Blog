@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/mobile-nav.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/dark-mode.css">
     <link rel="stylesheet" href="<?php echo content_url("/mu-plugins/blog-custom/css"); ?>/secret-link.css">
+    <?php blog_custom_output_site_icon_links(); ?>
 </head>
 <body>
     <!-- 立即检查：非首次访问时隐藏加载界面，避免闪烁 -->

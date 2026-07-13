@@ -130,14 +130,15 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid var(--nav-accent);
+    border-radius: 50%;
+    background: url('../static/images/site-icons/site-icon-192.png') center / cover no-repeat;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08), 0 0 16px var(--nav-accent-glow);
 }
 
 .side-nav-logo .logo-icon svg {
-    width: 42px;
-    height: 42px;
-    fill: none;
-    stroke: var(--nav-accent);
-    stroke-width: 1.5;
+    display: none;
 }
 
 .side-nav-logo .logo-text {

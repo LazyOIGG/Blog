@@ -560,6 +560,7 @@
             }
         }
     </style>
+    <?php blog_custom_output_site_icon_links(); ?>
 </head>
 <body>
     <main class="tcp-page is-replaying" id="tcpPage">
